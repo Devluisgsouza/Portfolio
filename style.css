@@ -1,0 +1,75 @@
+
+/* ESTILO GERAL */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    background-image: radial-gradient(circle, rgb(12, 2, 26) 0%, rgb(2, 1, 7) 70%);
+    color: white;
+    height: 100vh;
+}
+
+.interface{
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+/* ESTILO DO CABEÇALHO */
+
+header{
+    padding: 40px 5%;
+}
+
+header > .interface{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header .logo img{
+    width: 150px;
+}
+
+header a{
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    transition: .2s;
+}
+
+header a:hover{
+    color: rgb(126, 46, 247);
+    transition: 0.5s all;
+    transform: scale(1.05);
+}
+
+header nav ul{
+    list-style-type: none;
+}
+
+header nav ul li{
+    display: inline-block;
+    padding: 0 40px;
+}
+
+header .btn-contact button{
+    padding: 10px 40px;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    background-color: transparent;
+    border: 1px solid;
+    border-color: rgb(126, 46, 247);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+header .btn-contact button:hover{
+    box-shadow: 0px 0px 20px rgb(126, 46, 247);
+    transition: 0.5s all;
+}
+
