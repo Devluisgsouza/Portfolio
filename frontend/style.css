@@ -43,7 +43,7 @@ header a{
 
 header a:hover{
     color: rgb(126, 46, 247);
-    transition: 0.5s all;
+    transition: 0.2s all;
     transform: scale(1.05);
 }
 
@@ -73,3 +73,6 @@ header .btn-contact button:hover{
     transition: 0.5s all;
 }
 
+
+
+/* ESTILO DO CONTEÚDO PRINCIPAL */
