@@ -203,6 +203,12 @@ section.site-profile .flex{
 
 .site-profile .flex p span{
     color: rgb(126, 46, 247);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.site-profile span #important{
+    color: rgb(126, 46, 247);
     font-size: 40px;
     font-weight: bold;
 }
