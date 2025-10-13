@@ -53,7 +53,7 @@ h2.title span{
     color: rgb(126, 46, 247);
 }
 
-.efect-txt-top, .efetc-img-top, .title, .flex, .icons{
+.efect-txt-top, .efetc-img-top, .title, .efect-profile, .img-port-1, .img-port-2, .img-port-3, .icons, .efect-contacts, .social-icons{
     visibility: hidden;
 }
 
