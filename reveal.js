@@ -13,7 +13,7 @@ see.reveal('.efetc-img-top',{
     duration: 1500,
     distance: '90px',
     origin: 'right',
-    delay: 500
+    delay: 200
 })
 
 see.reveal('.title',{

@@ -1,0 +1,60 @@
+
+@media screen and (max-width: 1190px){
+    header .menu-desktop, .btn-top{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1190px){
+
+.interface{
+    max-width: 500px;
+}
+
+section.site-top .flex{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+header .logo img{
+    width: 80px;
+}
+
+.site-top .img-site-top img{
+    width: 300px;
+    box-shadow: 0px 0px 40px rgb(126, 46, 247);
+    border-top-left-radius: 120px;
+    border-end-end-radius: 120px;
+    border-top-right-radius: 40px;
+    border-end-start-radius: 40px;
+    display: inline-block;
+    transition: .2s;
+    margin-top: -300px;
+}
+
+section.site-profile{
+    padding: 0 4%;
+    justify-content: center;
+}
+
+
+.site-profile .skills .icons{
+    gap: 30px;
+}
+
+.efect-projects{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+
+.social-box{
+    font-size: 15px;
+}
+
+}

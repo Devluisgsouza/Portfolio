@@ -21,6 +21,7 @@ body{
 .interface{
     max-width: 1280px;
     margin: 0 auto;
+    padding: 0 4%;
 }
 
 .flex{
@@ -103,6 +104,17 @@ header nav ul{
 header nav ul li{
     display: inline-block;
     padding: 0 40px;
+}
+
+/* -------------- MENU BUTTON MOB -------------- */
+
+
+header.btn-menu-mob .line-menu-mob1{
+    width: 30px;
+}
+
+header.btn-menu-mob .line-menu-mob2{
+    width: 20px;
 }
 
 
