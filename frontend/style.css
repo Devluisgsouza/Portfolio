@@ -144,6 +144,10 @@ section.site-top .flex{
     margin-top: 20px;
 }
 
+.site-top h2 span{
+    color: rgb(126, 46, 247);
+}
+
 .site-top h3{
     color: #fff;
     font-size: 60px;
