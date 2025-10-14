@@ -108,13 +108,55 @@ header nav ul li{
 
 /* -------------- MENU BUTTON MOB -------------- */
 
+header .btn-menu-mob{
+    display: none;
+}
 
-header.btn-menu-mob .line-menu-mob1{
+header .btn-menu-mob div{
+    background-color: #fff;
+    height: 3px;
+    margin: 10px 0;
+    transition: .2s;
+}
+
+header .btn-menu-mob .line-menu-mob1{
     width: 30px;
 }
 
-header.btn-menu-mob .line-menu-mob2{
+header .btn-menu-mob .line-menu-mob2{
     width: 20px;
+}
+
+header .btn-menu-mob .line-menu-mob1.ativo1{
+    transform: rotate(45deg) translate(30%);
+}
+
+header .btn-menu-mob .line-menu-mob2.ativo2{
+    transform: rotate(-45deg) translate(30%);
+    width: 30px;
+}
+
+header .menu-mobile{
+    width: 100%;
+    height: 100vh;
+    background-color: #000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+}
+
+header .menu-mobile ul{
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 

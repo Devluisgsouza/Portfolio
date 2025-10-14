@@ -11,6 +11,14 @@
     max-width: 500px;
 }
 
+header .btn-menu-mob{
+    display:block;
+}
+
+section.site-top{
+    margin-top: 100px;
+}
+
 section.site-top .flex{
     display: flex;
     flex-direction: column;
@@ -18,6 +26,9 @@ section.site-top .flex{
     justify-content: center;
 }
 
+header{
+    height: 100px;
+}
 
 header .logo img{
     width: 80px;
@@ -53,8 +64,13 @@ section.site-profile{
     gap: 40px;
 }
 
+.img-port{
+    width: 260px;
+    height: 360px;
+}
+
 .social-box{
-    font-size: 15px;
+    font-size: 12px;
 }
 
 }
