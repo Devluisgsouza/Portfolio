@@ -340,7 +340,10 @@ section.site-projects .interface{
 section.site-projects .flex{
     margin-top: 100px;
     justify-content: space-between;
+    gap:30px
 }
+
+
 
 .img-port{
     width: 360px;
