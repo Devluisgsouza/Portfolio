@@ -19,7 +19,7 @@
   <img src="images/portifoliohome.png" alt="site" width="1000" height="600">
 </div>
 
-## 🌐 Link ##
+## 🌐 Link Web ##
 
 - [PORTIFOLIO](https://devluisportifolio.netlify.app/)
 
