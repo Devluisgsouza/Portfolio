@@ -21,7 +21,7 @@
 
 ## 🌐 Link ##
 
-- [PORTIFOLIO](https://devluisportifolio.netlify.app/)
+- [PORTIFOLIO](https://devluisportfolio.netlify.app/)
 
 
 
