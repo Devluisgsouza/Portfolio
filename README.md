@@ -5,7 +5,7 @@
 
 ## 📕 About
 
-**PORTFOLIO** in website mode, which presents all my knowledge and experience in the field of programming, a resume in the form of a website.
+**PORTFOLIO** in website mode, which presents all my knowledge and experience in the field of programming, a summary of my professional and educational profile.
 
 ## 📌 Programming Languages ##
 
