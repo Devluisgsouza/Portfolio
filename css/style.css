@@ -504,6 +504,14 @@ header .logo img:hover { opacity: 0.7; }
     text-transform: uppercase;
     letter-spacing: 0.06em;
 }
+/* SVG icons inherit size and color from the parent .skill-icon */
+.skill-svg {
+    width: 1em;
+    height: 1em;
+    font-size: inherit;
+    color: inherit;
+    flex-shrink: 0;
+}
 .skill-icon:hover {
     border-color: var(--accent);
     color: var(--accent);
@@ -576,7 +584,7 @@ header .logo img:hover { opacity: 0.7; }
     /* NO horizontal padding here — padding inside overflow:scroll
        is unreliable across browsers. Offset is handled via
        margin-left on the first card and ::after on the track. */
-    padding-left: 0;
+    padding-left: 300px;
     padding-right: 0;
 }
 .carousel-wrapper::-webkit-scrollbar { display: none; }
