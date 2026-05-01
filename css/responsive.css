@@ -1,159 +1,155 @@
+/* ============================================
+   RESPONSIVE — max-width: 1100px
+   ============================================ */
 
-
-@media screen and (max-width: 1345px){
-    .img-port{
-    width: 300px;
-    height: 400px;
-    border-radius: 20px;
-}
-}
-
-@media screen and (max-width: 1255px){
-
-
-header .menu-desktop, .btn-top{
-    display: none;
-}
-
-header{
-    height: 80px;
-    align-items: center;
-}
-
-header .logo img{
-    width: 50px;
-}
-
-header .btn-menu-mob{
-    display:block;
-}
-
-h2.title{
-    font-size: 30px;
-    text-align: center;
+   @media screen and (max-width: 1100px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+    .hero-image {
+        order: -1;
+        display: flex;
+        justify-content: center;
+    }
+    .hero-name {
+        font-size: clamp(44px, 10vw, 72px);
+    }
+    .image-frame img {
+        width: 280px;
+        height: 320px;
+    }
+    .profile-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+    }
+    .contacts-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+    }
 }
 
-section.site-top{
-    margin-top: 120px;
-}
 
-section.site-top .interface{
-    padding: 0 10%;
-}
+/* ============================================
+   RESPONSIVE — max-width: 860px
+   ============================================ */
 
-section.site-profile .interface{
-    padding: 0 10%;
-}
-
-section.site-projects .interface{
-    padding: 0 10%;
-}
-
-section.site-contacts .interface{
-    padding: 0 10%;
-}
-
-section.site-top .flex{
-    display: flex;
-    flex-direction: column;
-    gap: 10px
-}
-
-.site-top .img-site-top img{
-    width: 200px;
-    border-top-left-radius: 100px;
-    border-end-end-radius: 100px;
-    margin-top: 90px;
-}
-
-.site-top h2{
-    font-size: 30px;
-}
-
-.site-top h3{
-    font-size: 30px;
-}
-
-.site-top .txt-site-top p{
-    margin: 0px 0;
-    margin-top: 20px;
-    font-size: 20px;
-    max-width: 500px;
-}
-
-section.site-profile .interface{
-    margin-top: 60px;
-    flex-direction: column;
-}
-
-.site-profile .flex p{
-    font-size: 18px;
-    line-height: 28px;
-    text-align: start;
-}
-
-section.site-profile .flex{
-    margin-top: 20px;
-    gap: 0
-}
-
-.site-profile .skills .icons{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 50px;
-    font-size: 30px;
-}
-
-section.site-projects .interface{
-    margin-top: 10px;
-}
-
-section.site-projects .flex{
-    margin-top: 100px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 40px
-}
-
-.img-port{
-    width: 260px;
-    height: 360px;
-    border-radius: 20px;
-}
-
-.overlay{
-    border-radius: 20px;
-}
-
-.social-box{
-    line-height: 60px;
-    font-size: 9px;
-}
-
-.social-icons{
-    display: flex;
-    padding: 20px 0%;
-    font-size: 30px;
-    margin-top: 60px;
-    gap: 20px;
-}
-
-}
-
-@media screen and (max-width: 694px){
-
-    footer{
-        width: 110%;
+@media screen and (max-width: 860px) {
+    /* Header */
+    .menu-desktop,
+    .btn-contact {
+        display: none;
+    }
+    header {
+        height: auto;
+    }
+    .header-inner {
+        height: 60px;
+    }
+    .btn-menu-mob {
+        display: flex;
+    }
+    .menu-mobile {
+        display: flex;
     }
 
-    .social-icons{
-        margin-top: 30px;
+    /* Hero */
+    .site-top .interface {
+        padding-top: 48px;
+    }
+    .hero-grid {
+        gap: 40px;
+        margin-bottom: 40px;
+    }
+    .stats-bar {
+        padding: 20px 24px;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    .stat-divider {
+        display: none;
+    }
+    .stat {
+        flex: 1 0 40%;
+        align-items: flex-start;
     }
 
+    /* Profile */
+    .site-profile {
+        padding: 100px 0;
+    }
+
+    /* Projects */
+    .site-projects {
+        padding-bottom: 100px;
+    }
+    .projects-header-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+    }
+    .project-card {
+        flex: 0 0 300px;
+    }
+
+    /* Contacts */
+    .site-contacts {
+        padding-bottom: 100px;
+    }
+
+    /* Footer */
+    .footer-inner {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+    }
+}
 
 
+/* ============================================
+   RESPONSIVE — max-width: 560px
+   ============================================ */
+
+@media screen and (max-width: 560px) {
+    .hero-name {
+        font-size: clamp(38px, 12vw, 56px);
+    }
+    .hero-desc {
+        font-size: 15px;
+    }
+    .hero-cta {
+        flex-direction: column;
+    }
+    .btn-primary, .btn-ghost {
+        text-align: center;
+        justify-content: center;
+    }
+    .image-frame img {
+        width: 220px;
+        height: 260px;
+    }
+    .section-title {
+        font-size: clamp(30px, 9vw, 44px);
+    }
+    .project-card {
+        flex: 0 0 260px;
+    }
+    .card-image {
+        height: 160px;
+    }
+    .icons {
+        gap: 10px;
+    }
+    .skill-icon {
+        min-width: 72px;
+        padding: 16px 16px;
+        font-size: 26px;
+    }
+    .stat-num {
+        font-size: 22px;
+    }
+
+    .contact-list li {
+        padding: 16px 18px;
+    }
 }

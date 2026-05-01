@@ -6,154 +6,363 @@
     <link rel="icon" href="images/logo.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,
-    600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> <!--GOOGLE FONTS-->
-    <script src="https://kit.fontawesome.com/955765ebb4.js" crossorigin="anonymous"></script> <!--LOGOS-->
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/955765ebb4.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css" media="screen">
-    <script src="https://unpkg.com/scrollreveal"></script> <!--SCROLL-->
     <script src="js/reveal.js" defer></script>
     <script src="js/btn-menu-mob.js" defer></script>
-
-    <title>Portfolio Luis Souza</title>
+    <title>Luis Souza — Developer</title>
 </head>
 <body>
-    <header>
-        <div class="interface">
+
+    <!-- Grain overlay -->
+    <div class="grain"></div>
+
+    <header id="header">
+        <div class="interface header-inner">
             <div class="logo">
                 <a href="#">
                     <img src="images/logo.png" alt="Logotipo">
                 </a>
-            </div> <!-- logo -->
-            <section class="menu-desktop">
-                <nav>
-                    <ul>
-                        <li><a href="#">HOME</a></li>
-                        <li><a href="#site-profile">PROFILE</a></li>
-                        <li><a href="#site-projects">PROJECTS</a></li>
-                        <li><a href="#site-contacts">CONTACTS</a></li>
-                    </ul>
-                </nav>
-            </section>
-
-            <div class="btn-top">
-                <a href="https://wa.me/5512978145677">
-                    <button>CONTACT ME</button>
-                </a>
             </div>
 
-            <div class="btn-menu-mob" id="btn-menu-mob">
+            <nav class="menu-desktop">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#site-profile">Profile</a></li>
+                    <li><a href="#site-projects">Projects</a></li>
+                    <li><a href="#site-contacts">Contacts</a></li>
+                </ul>
+            </nav>
+
+            <a href="https://wa.me/5512978145677" class="btn-contact">
+                Contact me <span class="btn-arrow">↗</span>
+            </a>
+
+            <button class="btn-menu-mob" id="btn-menu-mob" aria-label="Menu">
                 <div class="line-menu-mob1"></div>
                 <div class="line-menu-mob2"></div>
-            </div>
+            </button>
+        </div>
 
-            <section class="menu-mobile" id="menu-mobile">
-                <nav>
-                    <ul>
-                        <li><a href="#">HOME</a></li>
-                        <li><a href="#site-profile">PROFILE</a></li>
-                        <li><a href="#site-projects">PROJECTS</a></li>
-                        <li><a href="#site-contacts">CONTACTS</a></li>
-                    </ul>
-                </nav>
-            </section>
-        </div> <!-- interface--->
+        <nav class="menu-mobile" id="menu-mobile">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#site-profile">Profile</a></li>
+                <li><a href="#site-projects">Projects</a></li>
+                <li><a href="#site-contacts">Contacts</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main>
+        <!-- ===== HERO ===== -->
         <section class="site-top" id="site-top">
             <div class="interface">
-                <div class="flex">
-                    <div class="txt-site-top efect-txt-top">
-                        <h1>Hello! I'm</h1>
-                        <h2><span>L</span>UIS GUILHERME</h2>
-                        <h3>DE SOUZA</h3>
-                        <h4>Software Developer</h4>
-                        <p>Technology and creativity have always been my focus. I'm looking for new opportunities to demonstrate my skills and acquire new knowledge.</p>
-                        <div class="btn-top">
-                            <a href="#site-projects">
-                                <button>PROJECTS</button>
-                            </a>
-                        </div><!-- btn-profile -->
-                    </div><!-- txt-site-top -->
+                <div class="hero-grid">
+                    <div class="hero-text efect-txt-top">
+                        <p class="hero-eyebrow"><span class="dot"></span> Available for opportunities</p>
+                        <h1 class="hero-name">
+                            <span class="name-accent">Luis</span><br>
+                            Guilherme<br>
+                            <span class="name-outline">de Souza</span>
+                        </h1>
+                        <p class="hero-role">Software Developer</p>
+                        <p class="hero-desc">Technology and creativity have always been my focus. Looking for new opportunities to demonstrate my skills and acquire new knowledge.</p>
+                        <div class="hero-cta">
+                            <a href="#site-projects" class="btn-primary">View Projects <span>↓</span></a>
+                            <a href="#site-contacts" class="btn-ghost">Get in touch</a>
+                        </div>
+                    </div>
 
-                    <div class="img-site-top efetc-img-top">
-                        <nav class="menu-desktop">
-                            <a href="#site-profile"><img src="images/avatar_perfil.png" alt="profile picture"></a>
-                        </nav>
-                    </div><!-- img-site-top -->
+                    <div class="hero-image efetc-img-top">
+                        <div class="image-frame">
+                            <a href="#site-profile">
+                                <img src="images/avatar_perfil.png" alt="Luis Guilherme">
+                            </a>
+                            <div class="image-tag">
+                                <span class="dm-mono">Based in</span>
+                                <strong>Brasil, SP</strong>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div> <!-- interface -->
-        </section><!-- site-top -->
-        
+
+                <!-- Floating stats bar -->
+                <div class="stats-bar efect-txt-top">
+                    <div class="stat">
+                        <span class="stat-num">5+</span>
+                        <span class="stat-label">Languages</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat">
+                        <span class="stat-num">3+</span>
+                        <span class="stat-label">Projects</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat">
+                        <span class="stat-num">26</span>
+                        <span class="stat-label">Years old</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat">
+                        <span class="stat-num">Junior</span>
+                        <span class="stat-label">Degree</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== PROFILE ===== -->
         <section class="site-profile" id="site-profile">
             <div class="interface">
-                <h2 class="title"><span>ABOUT</span> ME</h2>
-                <div class="flex efect-profile">
-                    <p>
-                        <span id="important">H</span>ello I'm Luis Guilherme de Souza, I'm 25 years old, and I've a degree in Systems Analysis and Development.
-                        I'm looking for opportunities to apply and improve my knowledge in the field of technology. During my academic career, 
-                        I've developed skills in programming, like <span>data analysis</span>, <span>databases</span>, and <span>software development</span>, always seeking to improve 
-                        my technical and behavioral skills. My expertise is in developing <span>Mobile Apps</span>, <span>Websites</span> and <span>Landing Pages</span>.
-                        The programming languages I know are: <span>HTML</span>, <span>CSS</span>, <span>JavaScript</span> and <span>Python</span>.
-                        I'm a dedicated, responsible person with an interest in learning new technologies, 
-                        as well as an ability to work in a team and deal with challenges. I'm available for an interview, 
-                        where I can better detail my experiences, knowledge, and expectations.
-                    </p>
+                <div class="section-header efect-profile">
+                    <span class="section-tag dm-mono">// 01 — about</span>
+                    <h2 class="section-title">About <span>me</span></h2>
                 </div>
-                <div class="skills">
-                    <h2 class="title"><span>S</span>KILLS</h2>
-                    <div class="icons">
-                        <a href="https://www.hostinger.com/br/tutoriais/o-que-e-html-conceitos-basicos"><i class="fa-brands fa-html5"></i></a>
-                        <a href="https://ebaconline.com.br/blog/o-que-e-css-e-para-que-serve-seo"><i class="fa-brands fa-css"></i></a>
-                        <a href="https://aws.amazon.com/pt/what-is/python/"><i class="fa-brands fa-python"></i></a>
-                        <a href="https://aws.amazon.com/pt/what-is/javascript/"><i class="fa-brands fa-square-js"></i></a>
-                        <a href="https://www.alura.com.br/artigos/react-js?utm_term=&utm_campaign=topo-aon-search-gg-dsa-artigos_conteudos&utm_source=google&utm_medium=cpc&campaign_id=11384329873_164068847699_703853156311&utm_id=11384329873_164068847699_703853156311&hsa_acc=7964138385&hsa_cam=topo-aon-search-gg-dsa-artigos_conteudos&hsa_grp=164068847699&hsa_ad=703853156311&hsa_src=g&hsa_tgt=aud-527303763294:dsa-2273097816642&hsa_kw=&hsa_mt=&hsa_net=google&hsa_ver=3&gad_source=1&gad_campaignid=11384329873&gbraid=0AAAAADpqZIAfPuI5ecw2V7qurhxoJlgZI&gclid=CjwKCAjwup3HBhAAEiwA7euZuhpbqF5KtCW7_q-Zm4jF1ff_fbaBXQ8LPVQy_cttiVxDjmNW30IzmRoCLzUQAvD_BwE"><i class="fa-brands fa-react"></i></a>
+
+                <div class="profile-grid efect-profile">
+                    <div class="profile-text">
+                        <p>
+                            Hello, I'm <strong>Luis Guilherme de Souza</strong>, 26 years old, with a degree in
+                            Systems Analysis and Development. I'm looking for opportunities to apply and improve
+                            my knowledge in technology.
+                        </p>
+                        <p>
+                            During my academic career, I developed skills in <mark>data analysis</mark>,
+                            <mark>databases</mark>, and <mark>software development</mark>. My expertise is in
+                            developing <mark>Mobile Apps</mark>, <mark>Websites</mark> and <mark>Landing Pages</mark>.
+                        </p>
+                        <p>
+                            I'm dedicated, responsible, and passionate about learning new technologies —
+                            able to work in a team and rise to any challenge.
+                        </p>
+                    </div>
+
+                    <div class="profile-aside">
+                        <div class="aside-card">
+                            <span class="aside-label dm-mono">Languages</span>
+                            <ul class="aside-list">
+                                <li>HTML5 &amp; CSS3</li>
+                                <li>JavaScript</li>
+                                <li>Python</li>
+                                <li>TypeScript</li>
+                            </ul>
+                        </div>
+                        <div class="aside-card">
+                            <span class="aside-label dm-mono">Frameworks</span>
+                            <ul class="aside-list">
+                                <li>React</li>
+                                <li>React Native</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div><!-- interface -->
-        </section><!-- site-profile -->     
-        
+
+                <!-- Skills icons -->
+                <div class="skills-row">
+                    <p class="section-tag dm-mono">// skills</p>
+                    <div class="icons">
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="skill-icon" title="HTML5">
+                            <i class="fa-brands fa-html5"></i>
+                            <span>HTML5</span>
+                        </a>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="skill-icon" title="CSS3">
+                            <i class="fa-brands fa-css"></i>
+                            <span>CSS3</span>
+                        </a>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="skill-icon" title="JavaScript">
+                            <i class="fa-brands fa-square-js"></i>
+                            <span>JS</span>
+                        </a>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="skill-icon" title="TypeScript">
+                            <i class="fa-brands fa-typescript"></i>
+                            <span>TypeScript</span>
+                        </a>
+                        <a href="https://www.python.org/" class="skill-icon" title="Python">
+                            <i class="fa-brands fa-python"></i>
+                            <span>Python</span>
+                        </a>
+                        <a href="https://react.dev/" class="skill-icon" title="React">
+                            <i class="fa-brands fa-react"></i>
+                            <span>React</span>
+                        </a>
+                        <a href="https://git-scm.com/" class="skill-icon" title="Git">
+                            <i class="fa-brands fa-git-alt"></i>
+                            <span>Git</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== PROJECTS ===== -->
         <section class="site-projects" id="site-projects">
             <div class="interface">
-                <h2 class="title"><span>MY</span> PROJECTS</h2>
-                <div class="flex efect-projects">
-                    <div class="img-port img-port-1" style="background-image: url(images/costs.png);">
-                        <a href="https://github.com/Devluisgsouza/Costs"><div class="overlay">COSTS</div></a>
-                    </div>
-                    <div class="img-port img-port-2" style="background-image: url(images/projeto2.png);">
-                        <a href="https://chat-furia.netlify.app/"><div class="overlay">CHAT FÚRIA</div></a>
-                    </div>
-                    <div class="img-port img-port-3" style="background-image: url(images/projeto_weather.png);">
-                        <a href="https://weathercitypage.netlify.app/"><div class="overlay">CITY WEATHER</div></a>
+                <div class="section-header img-port-1">
+                    <span class="section-tag dm-mono">// 02 — work</span>
+                    <div class="projects-header-row">
+                        <h2 class="section-title">My <span>Projects</span></h2>
+                        <div class="scroll-hint dm-mono">
+                            <span>scroll</span>
+                            <div class="scroll-arrows">
+                                <button class="proj-nav" id="proj-prev" aria-label="Previous">←</button>
+                                <button class="proj-nav" id="proj-next" aria-label="Next">→</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div><!-- interface -->
-        </section><!-- site-projects -->
+            </div>
 
+            <!-- Full-width carousel -->
+            <div class="carousel-wrapper">
+                <div class="carousel-track" id="carousel-track">
+
+                    <article class="project-card img-port-1">
+                        <div class="card-image" style="background-image: url(images/costs.png)"></div>
+                        <div class="card-body">
+                            <div class="card-meta dm-mono">
+                                <span class="card-num">01</span>
+                                <span class="card-tag">Web App</span>
+                            </div>
+                            <h3 class="card-title">Costs</h3>
+                            <p class="card-desc">Project cost management system with real-time budget tracking and service allocation.</p>
+                            <div class="card-stack">
+                                <span>React</span><span>CSS Modules</span><span>JavaScript</span><span>MongoDB</span><span>Node.js</span>
+                            </div>
+                            <a href="https://costsprojects.netlify.app/" class="card-link" target="_blank">
+                                Live demo <span>↗</span>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="project-card img-port-2">
+                        <div class="card-image" style="background-image: url(images/projeto2.png)"></div>
+                        <div class="card-body">
+                            <div class="card-meta dm-mono">
+                                <span class="card-num">02</span>
+                                <span class="card-tag">Web App</span>
+                            </div>
+                            <h3 class="card-title">Chat Fúria</h3>
+                            <p class="card-desc">Real-time chat application with dynamic messaging and responsive interface design.</p>
+                            <div class="card-stack">
+                                <span>HTML</span><span>CSS</span><span>JavaScript</span>
+                            </div>
+                            <a href="https://chat-furia.netlify.app/" class="card-link" target="_blank">
+                                Live demo <span>↗</span>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="project-card img-port-3">
+                        <div class="card-image" style="background-image: url(images/weather.png)"></div>
+                        <div class="card-body">
+                            <div class="card-meta dm-mono">
+                                <span class="card-num">03</span>
+                                <span class="card-tag">Web App</span>
+                            </div>
+                            <h3 class="card-title">City Weather</h3>
+                            <p class="card-desc">Weather forecast app with city search and real-time data from a public API.</p>
+                            <div class="card-stack">
+                                <span>HTML</span><span>CSS</span><span>JavaScript</span>
+                            </div>
+                            <a href="https://weathercitypage.netlify.app/" class="card-link" target="_blank">
+                                Live demo <span>↗</span>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="project-card img-port-3">
+                        <div class="card-image" style="background-image: url(images/user_list.png)"></div>
+                        <div class="card-body">
+                            <div class="card-meta dm-mono">
+                                <span class="card-num">04</span>
+                                <span class="card-tag">Web App</span>
+                            </div>
+                            <h3 class="card-title">Users List</h3>
+                            <p class="card-desc"> Web application for searching and viewing users by consuming the public API.</p>
+                            <div class="card-stack">
+                                <span>React</span><span>TypeScript</span><span>Tailwind CSS</span>
+                            </div>
+                            <a href="https://github.com/Devluisgsouza/users-list" class="card-link" target="_blank">
+                                View on GitHub <span>↗</span>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- FUTURE PROJECTS: duplicate an <article class="project-card"> block above -->
+
+                </div>
+            </div>
+
+            <!-- Dots -->
+            <div class="carousel-dots" id="carousel-dots"></div>
+        </section>
+
+        <!-- ===== CONTACTS ===== -->
         <section class="site-contacts" id="site-contacts">
             <div class="interface">
-                <h2 class="title"><span>MY</span> CONTACTS</h2>
-                <div class="flex efect-contacts" >
-                    <div class="social-box">
-                        <h1><span><i class="fa-solid fa-envelope"></i></span> devlgsouza@gmail.com</h1>
-                        <h1><span><i class="fa-solid fa-phone"></i></span> +55 (12) 97814-5677</h1>
-                        <h1><span><i class="fa-solid fa-location-dot"></i></span> Brasil Jacareí - SP</h1>
+                <div class="section-header efect-contacts">
+                    <span class="section-tag dm-mono">// 03 — contact</span>
+                    <h2 class="section-title">Get in <span>touch</span></h2>
+                </div>
+
+                <div class="contacts-grid efect-contacts">
+                    <div class="contacts-left">
+                        <p class="contacts-intro">Have a project in mind or want to chat? I'm always open to new opportunities.</p>
+
+                        <ul class="contact-list">
+                            <li>
+                                <span class="contact-icon"><i class="fa-solid fa-envelope"></i></span>
+                                <div>
+                                    <span class="contact-label dm-mono">Email</span>
+                                    <a href="mailto:devlgsouza@gmail.com" class="contact-value">devlgsouza@gmail.com</a>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="contact-icon"><i class="fa-solid fa-phone"></i></span>
+                                <div>
+                                    <span class="contact-label dm-mono">WhatsApp</span>
+                                    <a href="https://wa.me/5512978145677" class="contact-value">+55 (12) 97814-5677</a>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="contact-icon"><i class="fa-solid fa-location-dot"></i></span>
+                                <div>
+                                    <span class="contact-label dm-mono">Location</span>
+                                    <span class="contact-value">Jacareí, SP — Brasil</span>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="social-icons">
-                        <a href="https://github.com/Devluisgsouza"><i class="fa-brands fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/luis-guilherme-de-souza-7b5a75318"><i class="fa-brands fa-square-linkedin"></i></a>
+
+                    <div class="contacts-right social-icons">
+                        <p class="dm-mono" style="font-size:12px; color: var(--muted); margin-bottom: 24px;">// socials</p>
+                        <a href="https://github.com/Devluisgsouza" class="social-link" target="_blank">
+                            <i class="fa-brands fa-github"></i>
+                            <span>GitHub</span>
+                            <span class="social-arrow">↗</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/luis-guilherme-de-souza-7b5a75318" class="social-link" target="_blank">
+                            <i class="fa-brands fa-linkedin"></i>
+                            <span>LinkedIn</span>
+                            <span class="social-arrow">↗</span>
+                        </a>
                     </div>
                 </div>
-            </div><!-- interface -->
-        </section><!-- site-contacts -->
+            </div>
+        </section>
     </main>
 
     <footer>
-        <div class="interface">
-            <p>Developed by Luis Guilherme de Souza</p>
-            <p>All rights reserved &copy; 2025</p>
-        </div><!-- interface -->
-    </footer><!-- footer -->
+        <div class="interface footer-inner">
+            <span class="dm-mono">Luis Guilherme de Souza</span>
+            <span class="dm-mono footer-copy">© 2025 — All rights reserved</span>
+        </div>
+    </footer>
+
+    <script src="js/carousel.js" defer></script>
 </body>
 </html>

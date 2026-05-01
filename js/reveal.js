@@ -1,76 +1,74 @@
+window.see = ScrollReveal({ reset: true });
 
-window.see = ScrollReveal({reset:true})
+// Hero
+see.reveal('.efect-txt-top', {
+    duration: 1200,
+    distance: '40px',
+    origin: 'bottom',
+    easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+});
 
-// SITE TOP
+see.reveal('.efetc-img-top', {
+    duration: 1200,
+    distance: '40px',
+    origin: 'bottom',
+    delay: 150,
+    easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+});
 
-see.reveal('.efect-txt-top',{
-    duration: 1500,
-    distance: '90px',
-    origin: 'left',
-})
+// Section titles
+see.reveal('.title', {
+    duration: 1000,
+    distance: '30px',
+    origin: 'bottom',
+});
 
-see.reveal('.efetc-img-top',{
-    duration: 1500,
-    distance: '90px',
-    origin: 'right',
-    delay: 200
-})
+// Profile
+see.reveal('.efect-profile', {
+    duration: 1200,
+    distance: '40px',
+    origin: 'bottom',
+});
 
-see.reveal('.title',{
-    duration: 1500,
-    distance: '90px',
-    origin: 'right',
-})
+see.reveal('.icons', {
+    duration: 1000,
+    distance: '30px',
+    origin: 'bottom',
+    delay: 100,
+});
 
-// SITE PROFILE
+// Projects
+see.reveal('.img-port-1', {
+    duration: 1000,
+    distance: '40px',
+    origin: 'bottom',
+    delay: 0,
+});
 
-see.reveal('.efect-profile',{
-    duration: 1500,
-    distance: '90px',
-    origin: 'left',
-})
+see.reveal('.img-port-2', {
+    duration: 1000,
+    distance: '40px',
+    origin: 'bottom',
+    delay: 100,
+});
 
-see.reveal('.icons',{
-    duration: 1500,
-    distance: '90px',
-    origin: 'top',
-    delay: 100
-})
+see.reveal('.img-port-3', {
+    duration: 1000,
+    distance: '40px',
+    origin: 'bottom',
+    delay: 200,
+});
 
-// SITE PROJECTS
+// Contacts
+see.reveal('.efect-contacts', {
+    duration: 1200,
+    distance: '40px',
+    origin: 'bottom',
+});
 
-see.reveal('.img-port-1',{
-    duration: 1500,
-    distance: '90px',
-    origin: 'left',
-    delay: 300
-})
-
-see.reveal('.img-port-2',{
-    duration: 1500,
-    distance: '90px',
-    delay: 300
-})
-
-see.reveal('.img-port-3',{
-    duration: 1500,
-    distance: '90px',
-    origin: 'right',
-    delay: 300
-})
-
-// SITE CONTACTS
-
-see.reveal('.efect-contacts',{
-    duration: 1500,
-    distance: '90px',
-    origin: 'left',
-})
-
-see.reveal('.social-icons',{
-    duration: 1500,
-    distance: '90px',
-    origin: 'top',
-    delay: 100
-})
-
+see.reveal('.social-icons', {
+    duration: 1000,
+    distance: '30px',
+    origin: 'bottom',
+    delay: 120,
+});
