@@ -314,14 +314,25 @@ header .logo img:hover { opacity: 0.7; }
 .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
 
 /* Hero image */
-.hero-image { position: relative; }
+.hero-image {
+    position: relative;
+    /* Contain everything within the grid column */
+    min-width: 0;
+    display: flex;
+    justify-content: center;
+}
 .image-frame {
     position: relative;
-    display: inline-block;
+    /* Never exceed the column width */
+    width: 100%;
+    max-width: 380px;
+    /* Extra space at bottom for the tag that sticks out */
+    padding-bottom: 32px;
 }
 .image-frame img {
-    width: 380px;
-    height: 440px;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 380 / 440;
     object-fit: cover;
     border-radius: 24px 80px 24px 80px;
     display: block;
@@ -334,7 +345,8 @@ header .logo img:hover { opacity: 0.7; }
 .image-frame::before {
     content: '';
     position: absolute;
-    inset: -12px;
+    top: -12px; left: -12px; right: -12px;
+    bottom: 20px; /* account for padding-bottom */
     border-radius: 32px 92px 32px 92px;
     border: 1px solid var(--border2);
     z-index: -1;
@@ -342,8 +354,8 @@ header .logo img:hover { opacity: 0.7; }
 
 .image-tag {
     position: absolute;
-    bottom: -16px;
-    right: -16px;
+    bottom: 0;
+    right: 0;
     background: var(--surface);
     border: 1px solid var(--border2);
     border-radius: var(--radius-sm);
@@ -545,8 +557,9 @@ header .logo img:hover { opacity: 0.7; }
 /* Carousel */
 .carousel-wrapper {
     overflow: hidden;
-    padding: 24px 5% 48px;
+    padding: 24px 0 48px;
     cursor: grab;
+    /* No horizontal padding — JS handles offset so cards never clip */
 }
 .carousel-wrapper:active { cursor: grabbing; }
 
@@ -556,10 +569,20 @@ header .logo img:hover { opacity: 0.7; }
     transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: transform;
     user-select: none;
+    /* padding-left set dynamically by JS to center first card */
+}
+
+/* Hide nav controls when carousel is in "fit" mode (JS adds class) */
+.carousel-controls-hidden .scroll-hint {
+    visibility: hidden;
+    pointer-events: none;
+}
+.carousel-dots-hidden {
+    visibility: hidden;
 }
 
 .project-card {
-    flex: 0 0 380px;
+    flex: 0 0 360px;
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 24px;
