@@ -37,26 +37,20 @@ see.reveal('.icons', {
     delay: 100,
 });
 
-// Projects
+// Projects — animate each card individually with interval
+// Using .project-card directly so ALL cards animate regardless of count
+see.reveal('.project-card', {
+    duration: 900,
+    distance: '32px',
+    origin: 'bottom',
+    interval: 80,   // stagger between each card
+});
+
+// Also reveal the section header (kept img-port-1 class there)
 see.reveal('.img-port-1', {
     duration: 1000,
     distance: '40px',
     origin: 'bottom',
-    delay: 0,
-});
-
-see.reveal('.img-port-2', {
-    duration: 1000,
-    distance: '40px',
-    origin: 'bottom',
-    delay: 100,
-});
-
-see.reveal('.img-port-3', {
-    duration: 1000,
-    distance: '40px',
-    origin: 'bottom',
-    delay: 200,
 });
 
 // Contacts

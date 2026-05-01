@@ -98,7 +98,7 @@
                     </div>
                     <div class="stat-divider"></div>
                     <div class="stat">
-                        <span class="stat-num">3+</span>
+                        <span class="stat-num">4+</span>
                         <span class="stat-label">Projects</span>
                     </div>
                     <div class="stat-divider"></div>
@@ -119,14 +119,14 @@
         <section class="site-profile" id="site-profile">
             <div class="interface">
                 <div class="section-header efect-profile">
-                    <span class="section-tag dm-mono">// 01 — ABOUT</span>
+                    <span class="section-tag dm-mono">// 01 — about</span>
                     <h2 class="section-title">About <span>me</span></h2>
                 </div>
 
                 <div class="profile-grid efect-profile">
                     <div class="profile-text">
                         <p>
-                            Hello, I'm <strong>Luis Guilherme de Souza</strong>, 26 years old, with a degree in
+                            Hello, I'm <strong>Luis Guilherme de Souza</strong>, 25 years old, with a degree in
                             Systems Analysis and Development. I'm looking for opportunities to apply and improve
                             my knowledge in technology.
                         </p>
@@ -163,7 +163,7 @@
 
                 <!-- Skills icons -->
                 <div class="skills-row">
-                    <p class="section-tag dm-mono">// 02 — SKILLS</p>
+                    <p class="section-tag dm-mono">// skills</p>
                     <div class="icons">
                         <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="skill-icon" title="HTML5">
                             <i class="fa-brands fa-html5"></i>
@@ -173,25 +173,17 @@
                             <i class="fa-brands fa-css"></i>
                             <span>CSS3</span>
                         </a>
-                        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="skill-icon" title="JavaScript">
-                            <i class="fa-brands fa-square-js"></i>
-                            <span>JS</span>
-                        </a>
-                        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="skill-icon" title="TypeScript">
-                            <i class="fa-brands fa-typescript"></i>
-                            <span>TypeScript</span>
-                        </a>
                         <a href="https://www.python.org/" class="skill-icon" title="Python">
                             <i class="fa-brands fa-python"></i>
                             <span>Python</span>
                         </a>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="skill-icon" title="JavaScript">
+                            <i class="fa-brands fa-square-js"></i>
+                            <span>JS</span>
+                        </a>
                         <a href="https://react.dev/" class="skill-icon" title="React">
                             <i class="fa-brands fa-react"></i>
                             <span>React</span>
-                        </a>
-                        <a href="https://git-scm.com/" class="skill-icon" title="Git">
-                            <i class="fa-brands fa-git-alt"></i>
-                            <span>Git</span>
                         </a>
                     </div>
                 </div>
@@ -202,7 +194,7 @@
         <section class="site-projects" id="site-projects">
             <div class="interface">
                 <div class="section-header img-port-1">
-                    <span class="section-tag dm-mono">// 03 — PROJECTS</span>
+                    <span class="section-tag dm-mono">// 02 — work</span>
                     <div class="projects-header-row">
                         <h2 class="section-title">My <span>Projects</span></h2>
                         <div class="scroll-hint dm-mono">
@@ -230,10 +222,10 @@
                             <h3 class="card-title">Costs</h3>
                             <p class="card-desc">Project cost management system with real-time budget tracking and service allocation.</p>
                             <div class="card-stack">
-                                <span>React</span><span>CSS Modules</span><span>JavaScript</span><span>MongoDB</span><span>Node.js</span>
+                                <span>React</span><span>CSS</span><span>JavaScript</span>
                             </div>
-                            <a href="https://costsprojects.netlify.app/" class="card-link" target="_blank">
-                                Live demo <span>↗</span>
+                            <a href="https://github.com/Devluisgsouza/Costs" class="card-link" target="_blank">
+                                View on GitHub <span>↗</span>
                             </a>
                         </div>
                     </article>
@@ -273,39 +265,49 @@
                             </a>
                         </div>
                     </article>
-
                     <article class="project-card img-port-3">
                         <div class="card-image" style="background-image: url(images/user_list.png)"></div>
                         <div class="card-body">
                             <div class="card-meta dm-mono">
                                 <span class="card-num">04</span>
-                                <span class="card-tag">Web App</span>
+                                <span class="card-tag">Repository</span>
                             </div>
                             <h3 class="card-title">Users List</h3>
-                            <p class="card-desc"> Web application for searching and viewing users by consuming the public API.</p>
+                            <p class="card-desc">Aplication for searching and viewing users by consuming the publick API.</p>
                             <div class="card-stack">
-                                <span>React</span><span>TypeScript</span><span>Tailwind CSS</span>
+                                <span>HTML</span><span>CSS</span><span>JavaScript</span>
                             </div>
                             <a href="https://github.com/Devluisgsouza/users-list" class="card-link" target="_blank">
-                                View on GitHub <span>↗</span>
+                                Repository GitHub <span>↗</span>
                             </a>
                         </div>
                     </article>
+                    
+                    
 
                     <!-- FUTURE PROJECTS: duplicate an <article class="project-card"> block above -->
 
                 </div>
             </div>
 
-            <!-- Dots -->
+            <!-- Dots (hidden, kept for JS compat) -->
             <div class="carousel-dots" id="carousel-dots"></div>
+
+            <!-- Custom scrollbar — inside .interface for correct margins -->
+            <div class="interface">
+                <div class="carousel-scrollbar-wrap" id="carousel-scrollbar-wrap">
+                    <div class="carousel-scrollbar-track" id="carousel-scrollbar-track">
+                        <div class="carousel-scrollbar-thumb" id="carousel-scrollbar-thumb"></div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- ===== CONTACTS ===== -->
         <section class="site-contacts" id="site-contacts">
             <div class="interface">
                 <div class="section-header efect-contacts">
-                    <span class="section-tag dm-mono">// 04 — CONTACTS</span>
+                    <span class="section-tag dm-mono">// 03 — contact</span>
                     <h2 class="section-title">Get in <span>touch</span></h2>
                 </div>
 

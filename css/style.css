@@ -252,8 +252,8 @@ header .logo img:hover { opacity: 0.7; }
 
 .hero-name {
     font-family: 'Syne', sans-serif;
-    font-size: clamp(52px, 7vw, 96px);
-    font-weight: 800;
+    font-size: clamp(52px, 7vw, 110px);
+    font-weight: 700;
     line-height: 0.95;
     letter-spacing: -0.03em;
     margin-bottom: 24px;
@@ -523,6 +523,7 @@ header .logo img:hover { opacity: 0.7; }
     justify-content: space-between;
 }
 
+/* nav arrows — hidden by default, JS shows when content overflows */
 .scroll-hint {
     display: flex;
     align-items: center;
@@ -530,11 +531,15 @@ header .logo img:hover { opacity: 0.7; }
     font-size: 12px;
     color: var(--muted);
     margin-bottom: 8px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
 }
-.scroll-arrows {
-    display: flex;
-    gap: 8px;
+.scroll-hint.visible {
+    opacity: 1;
+    pointer-events: all;
 }
+.scroll-arrows { display: flex; gap: 8px; }
 .proj-nav {
     width: 40px; height: 40px;
     background: var(--surface);
@@ -554,38 +559,60 @@ header .logo img:hover { opacity: 0.7; }
     background: var(--surface2);
 }
 
-/* Carousel */
+/* ── Scroll container ──────────────────────────────────────────────
+   Uses native scrollLeft — no translateX, no clipping bugs.
+   Native scrollbar is hidden; we render a custom one below.
+   Horizontal padding mirrors .interface so cards start/end at the
+   same left margin as every other section.
+─────────────────────────────────────────────────────────────────── */
 .carousel-wrapper {
-    overflow: hidden;
-    padding: 24px 0 48px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     cursor: grab;
-    /* No horizontal padding — JS handles offset so cards never clip */
+    padding-top: 8px;
+    padding-bottom: 16px;
+    /* NO horizontal padding here — padding inside overflow:scroll
+       is unreliable across browsers. Offset is handled via
+       margin-left on the first card and ::after on the track. */
+    padding-left: 0;
+    padding-right: 0;
 }
+.carousel-wrapper::-webkit-scrollbar { display: none; }
 .carousel-wrapper:active { cursor: grabbing; }
 
 .carousel-track {
     display: flex;
+    justify-content: center;
     gap: 24px;
-    transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: transform;
+    /* width: max-content lets the track be as wide as all cards */
+    width: max-conten;
     user-select: none;
-    /* padding-left set dynamically by JS to center first card */
 }
 
-/* Hide nav controls when carousel is in "fit" mode (JS adds class) */
-.carousel-controls-hidden .scroll-hint {
-    visibility: hidden;
-    pointer-events: none;
-}
-.carousel-dots-hidden {
-    visibility: hidden;
+/* First card lines up with .interface left edge (5% of viewport,
+   max 65px). Using margin-left is 100% reliable — padding inside
+   overflow:scroll gets swallowed by WebKit on iOS/Android.       */
+.carousel-track > .project-card:first-child {
+    margin-left: min(5vw, 65px);
 }
 
+/* Ghost spacer at the end so the last card can scroll fully into
+   the same right margin as the rest of the page.                 */
+.carousel-track::after {
+    content: '';
+    display: block;
+    flex-shrink: 0;
+    width: min(5vw, 65px);
+}
+
+/* ── Cards ──────────────────────────────────────────────────────── */
 .project-card {
-    flex: 0 0 360px;
+    flex: 0 0 340px;
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 24px;
+    border-radius: 20px;
     overflow: hidden;
     transition: border-color 0.3s, transform 0.3s;
     display: flex;
@@ -597,15 +624,16 @@ header .logo img:hover { opacity: 0.7; }
 }
 
 .card-image {
-    height: 220px;
+    height: 210px;
     background-size: cover;
     background-position: top center;
     transition: background-position 6s ease;
+    flex-shrink: 0;
 }
 .project-card:hover .card-image { background-position: bottom center; }
 
 .card-body {
-    padding: 28px;
+    padding: 24px 28px 28px;
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -614,13 +642,9 @@ header .logo img:hover { opacity: 0.7; }
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
 }
-.card-num {
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-}
+.card-num { font-size: 11px; color: var(--muted); letter-spacing: 0.1em; }
 .card-tag {
     font-size: 10px;
     color: var(--accent);
@@ -633,63 +657,75 @@ header .logo img:hover { opacity: 0.7; }
 }
 .card-title {
     font-family: 'Syne', sans-serif;
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 700;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     color: var(--text);
 }
 .card-desc {
     font-size: 14px;
     color: var(--muted2);
     line-height: 1.6;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
     flex: 1;
 }
 .card-stack {
     display: flex;
-    gap: 8px;
+    gap: 6px;
     flex-wrap: wrap;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
 }
 .card-stack span {
     font-family: 'DM Mono', monospace;
-    font-size: 11px;
+    font-size: 10px;
     color: var(--muted2);
     background: var(--surface2);
     border: 1px solid var(--border);
-    padding: 4px 10px;
+    padding: 3px 9px;
     border-radius: 4px;
 }
 .card-link {
     font-family: 'DM Mono', monospace;
-    font-size: 13px;
+    font-size: 12px;
     color: var(--accent);
     display: flex;
     align-items: center;
     gap: 6px;
     transition: gap 0.2s;
+    margin-top: auto;
 }
 .card-link:hover { gap: 10px; }
 
-/* Carousel dots */
-.carousel-dots {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    padding: 0 5%;
+/* ── Custom scrollbar ───────────────────────────────────────────────
+   Sits inside .interface so it shares the same left/right margins.
+   Track is a thin line; thumb is amber and draggable.
+─────────────────────────────────────────────────────────────────── */
+.carousel-scrollbar-wrap {
+    margin-top: 16px;
 }
-.carousel-dot {
-    width: 6px; height: 6px;
-    border-radius: 3px;
+.carousel-scrollbar-track {
+    position: relative;
+    height: 3px;
     background: var(--border2);
-    border: none;
+    border-radius: 2px;
     cursor: pointer;
-    transition: width 0.3s, background 0.3s;
 }
-.carousel-dot.active {
-    width: 24px;
+.carousel-scrollbar-thumb {
+    position: absolute;
+    top: 0; left: 0;
+    height: 100%;
+    min-width: 32px;
     background: var(--accent);
+    border-radius: 2px;
+    cursor: grab;
+    transition: background 0.2s;
+    /* width + left driven by JS */
 }
+.carousel-scrollbar-thumb:active  { cursor: grabbing; }
+.carousel-scrollbar-track:hover .carousel-scrollbar-thumb { background: var(--accent2); }
+
+/* dots — replaced by custom scrollbar */
+.carousel-dots { display: none; }
 
 
 /* ============================================

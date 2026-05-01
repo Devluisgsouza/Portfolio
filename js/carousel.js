@@ -1,135 +1,243 @@
 // =============================================
-//  PROJECTS CAROUSEL — fixed
-//  - Centers cards when all fit in viewport
-//  - Hides nav + dots when not needed
-//  - Never clips cards (offset-based, not padding)
-//  - Drag (mouse + touch) + keyboard
+//  PROJECTS CAROUSEL
+//  ─ auto-scroll left→right, then smoothly back
+//  ─ native scrollLeft — zero translateX
+//  ─ pauses on hover / touch / drag
+//  ─ resumes after 2 s of inactivity
+//  ─ custom draggable scrollbar
+//  ─ ← → buttons shown only when needed
 // =============================================
 
 (function () {
-    const track    = document.getElementById('carousel-track');
-    const wrapper  = document.querySelector('.carousel-wrapper');
-    const dotsWrap = document.getElementById('carousel-dots');
-    const prevBtn  = document.getElementById('proj-prev');
-    const nextBtn  = document.getElementById('proj-next');
-    const section  = document.querySelector('.site-projects');
 
-    if (!track || !wrapper) return;
+    var wrapper = document.querySelector('.carousel-wrapper');
+    var track   = document.getElementById('carousel-track');
+    var sbTrack = document.getElementById('carousel-scrollbar-track');
+    var sbThumb = document.getElementById('carousel-scrollbar-thumb');
+    var prevBtn = document.getElementById('proj-prev');
+    var nextBtn = document.getElementById('proj-next');
+    var hint    = document.querySelector('.scroll-hint');
 
-    const GAP = 24;
-    const cards = Array.from(track.querySelectorAll('.project-card'));
-    const total = cards.length;
-    let current = 0;
-    let fitMode = false;
+    if (!wrapper || !track) return;
 
-    // ---- Build dots ----
-    const dots = cards.map((_, i) => {
-        const btn = document.createElement('button');
-        btn.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-        btn.setAttribute('aria-label', 'Project ' + (i + 1));
-        btn.addEventListener('click', () => goTo(i));
-        dotsWrap.appendChild(btn);
-        return btn;
-    });
+    /* ── constants ── */
+    var AUTO_SPEED    = 0.5;    // px per frame going forward
+    var RETURN_SPEED  = 0.35;   // px per frame returning (slower = smoother)
+    var RESUME_DELAY  = 2000;   // ms idle before auto resumes
 
-    function getCardWidth()      { return cards[0] ? cards[0].offsetWidth : 0; }
-    function getTotalTrackWidth(){ return total * getCardWidth() + (total - 1) * GAP; }
-    function getViewportWidth()  { return wrapper.clientWidth; }
+    /* ── state ── */
+    var paused      = false;
+    var returning   = false;    // true while scrolling back to start
+    var resumeTimer = null;
 
-    function getBaseOffset() {
-        const vw = getViewportWidth();
-        const cw = getCardWidth();
-        const tw = getTotalTrackWidth();
-        return fitMode
-            ? Math.max(0, (vw - tw) / 2)   // center whole track
-            : Math.max(0, (vw - cw) / 2);  // center first card
+    /* ── measurements ── */
+    function cardStep() {
+        var card = track.querySelector('.project-card');
+        if (!card) return 364;
+        var gap = parseInt(window.getComputedStyle(track).gap) || 24;
+        return card.offsetWidth + gap;
     }
 
-    function updateControls() {
-        fitMode = getTotalTrackWidth() <= getViewportWidth();
-        if (section) section.classList.toggle('carousel-controls-hidden', fitMode);
-        dotsWrap.classList.toggle('carousel-dots-hidden', fitMode);
-        if (!fitMode) {
-            prevBtn.style.opacity = current === 0 ? '0.35' : '1';
-            nextBtn.style.opacity = current === total - 1 ? '0.35' : '1';
-            prevBtn.disabled = current === 0;
-            nextBtn.disabled = current === total - 1;
+    function minScroll() {
+        var first = track.querySelector('.project-card');
+        return first ? first.offsetLeft : 0;
+    }
+
+    function maxScroll() {
+        return wrapper.scrollWidth - wrapper.clientWidth;
+    }
+
+    /* ── scrollbar ── */
+    function updateScrollbar() {
+        if (!sbThumb || !sbTrack) return;
+        var scrollable = maxScroll();
+        if (scrollable <= 0) {
+            sbThumb.style.width = '100%';
+            sbThumb.style.left  = '0';
+            return;
         }
+        var ratio     = wrapper.clientWidth / wrapper.scrollWidth;
+        var thumbW    = Math.max(32, sbTrack.clientWidth * ratio);
+        var maxLeft   = sbTrack.clientWidth - thumbW;
+        var thumbLeft = (wrapper.scrollLeft / scrollable) * maxLeft;
+        sbThumb.style.width = thumbW + 'px';
+        sbThumb.style.left  = thumbLeft + 'px';
     }
 
-    function goTo(index, animate) {
-        if (animate === undefined) animate = true;
-        current = Math.max(0, Math.min(index, total - 1));
-        updateControls();
-
-        const baseOffset = getBaseOffset();
-        const cw = getCardWidth();
-        const translateX = fitMode
-            ? baseOffset
-            : baseOffset - current * (cw + GAP);
-
-        track.style.transition = animate
-            ? 'transform 0.45s cubic-bezier(0.4, 0, 0.2, 1)'
-            : 'none';
-        if (!animate) track.getBoundingClientRect(); // flush
-        track.style.transform = 'translateX(' + translateX + 'px)';
-
-        dots.forEach(function(d, i) { d.classList.toggle('active', i === current); });
+    /* ── overflow check ── */
+    function checkOverflow() {
+        var overflows = maxScroll() > 2;
+        if (hint)    hint.classList.toggle('visible', overflows);
+        if (prevBtn) prevBtn.style.display = overflows ? '' : 'none';
+        if (nextBtn) nextBtn.style.display = overflows ? '' : 'none';
+        updateScrollbar();
     }
 
-    prevBtn.addEventListener('click', function() { goTo(current - 1); });
-    nextBtn.addEventListener('click', function() { goTo(current + 1); });
+    /* ── smooth scroll (for arrows + scrollbar click) ── */
+    function smoothScrollTo(target) {
+        target = Math.max(0, Math.min(maxScroll(), target));
+        var start    = wrapper.scrollLeft;
+        var distance = target - start;
+        var duration = 400;
+        var t0       = null;
 
-    document.addEventListener('keydown', function(e) {
-        if (fitMode) return;
-        if (e.key === 'ArrowLeft')  goTo(current - 1);
-        if (e.key === 'ArrowRight') goTo(current + 1);
+        function step(now) {
+            if (!t0) t0 = now;
+            var t    = Math.min(1, (now - t0) / duration);
+            var ease = t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t;
+            wrapper.scrollLeft = start + distance * ease;
+            updateScrollbar();
+            if (t < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+    }
+
+    /* ── pause / resume ── */
+    function pauseAuto() {
+        paused = true;
+        returning = false;
+        clearTimeout(resumeTimer);
+    }
+
+    function scheduleResume() {
+        clearTimeout(resumeTimer);
+        resumeTimer = setTimeout(function () { paused = false; }, RESUME_DELAY);
+    }
+
+    /* ── auto-scroll loop ──────────────────────────────────────────
+       Forward: advances AUTO_SPEED px per frame.
+       When it hits the end, switches to "returning" mode.
+       Returning: retreats RETURN_SPEED px per frame (same loop,
+       different direction) until it reaches minScroll() again.
+    ─────────────────────────────────────────────────────────────── */
+    function autoScrollLoop() {
+        if (!paused) {
+            var mn = minScroll();
+            var mx = maxScroll();
+
+            if (mx > mn + 2) {          // only scroll if there's overflow
+                if (!returning) {
+                    /* ── going forward ── */
+                    if (wrapper.scrollLeft >= mx - 1) {
+                        returning = true;   // reached end, start return
+                    } else {
+                        wrapper.scrollLeft += AUTO_SPEED;
+                        updateScrollbar();
+                    }
+                } else {
+                    /* ── returning to start ── */
+                    if (wrapper.scrollLeft <= mn + 1) {
+                        returning = false;  // back at start, go forward again
+                        wrapper.scrollLeft = mn;
+                        updateScrollbar();
+                    } else {
+                        wrapper.scrollLeft -= RETURN_SPEED;
+                        updateScrollbar();
+                    }
+                }
+            }
+        }
+
+        requestAnimationFrame(autoScrollLoop);
+    }
+
+    /* ── arrow buttons ── */
+    if (prevBtn) {
+        prevBtn.addEventListener('click', function () {
+            pauseAuto();
+            smoothScrollTo(Math.max(minScroll(), wrapper.scrollLeft - cardStep()));
+            scheduleResume();
+        });
+    }
+    if (nextBtn) {
+        nextBtn.addEventListener('click', function () {
+            pauseAuto();
+            smoothScrollTo(wrapper.scrollLeft + cardStep());
+            scheduleResume();
+        });
+    }
+
+    /* ── pause on hover ── */
+    wrapper.addEventListener('mouseenter', pauseAuto);
+    wrapper.addEventListener('mouseleave', scheduleResume);
+
+    /* ── mouse drag ── */
+    var dragging  = false;
+    var dragX     = 0;
+    var dragStart = 0;
+
+    wrapper.addEventListener('mousedown', function (e) {
+        dragging  = true;
+        dragX     = e.clientX;
+        dragStart = wrapper.scrollLeft;
+        pauseAuto();
+        e.preventDefault();
+    });
+    window.addEventListener('mousemove', function (e) {
+        if (!dragging) return;
+        wrapper.scrollLeft = dragStart - (e.clientX - dragX);
+        updateScrollbar();
+    });
+    window.addEventListener('mouseup', function () {
+        if (!dragging) return;
+        dragging = false;
+        scheduleResume();
     });
 
-    // Drag
-    var dragStartX = 0, dragDeltaX = 0, isDragging = false;
-    var THRESHOLD = 60;
+    /* ── touch: native scroll, just pause/resume auto ── */
+    wrapper.addEventListener('touchstart', pauseAuto,       { passive: true });
+    wrapper.addEventListener('touchend',   scheduleResume,  { passive: true });
 
-    track.addEventListener('mousedown', function(e) {
-        if (fitMode) return;
-        isDragging = true;
-        dragStartX = e.clientX;
-        dragDeltaX = 0;
-        track.style.transition = 'none';
+    /* ── scrollbar thumb drag ── */
+    var sbDragging  = false;
+    var sbStartX    = 0;
+    var sbStartLeft = 0;
+
+    if (sbThumb) {
+        sbThumb.addEventListener('mousedown', function (e) {
+            sbDragging  = true;
+            sbStartX    = e.clientX;
+            sbStartLeft = wrapper.scrollLeft;
+            pauseAuto();
+            e.preventDefault();
+        });
+    }
+    if (sbTrack) {
+        sbTrack.addEventListener('click', function (e) {
+            if (e.target === sbThumb) return;
+            var rect = sbTrack.getBoundingClientRect();
+            smoothScrollTo((e.clientX - rect.left) / rect.width * maxScroll());
+            scheduleResume();
+        });
+    }
+    window.addEventListener('mousemove', function (e) {
+        if (!sbDragging) return;
+        var thumbW = sbThumb ? sbThumb.offsetWidth : 0;
+        var trackW = sbTrack ? sbTrack.clientWidth  : 1;
+        var ratio  = maxScroll() / Math.max(1, trackW - thumbW);
+        wrapper.scrollLeft = Math.max(0, Math.min(maxScroll(),
+            sbStartLeft + (e.clientX - sbStartX) * ratio));
+        updateScrollbar();
     });
-    window.addEventListener('mousemove', function(e) {
-        if (!isDragging) return;
-        dragDeltaX = e.clientX - dragStartX;
-        var base = getBaseOffset() - current * (getCardWidth() + GAP);
-        track.style.transform = 'translateX(' + (base + dragDeltaX) + 'px)';
-    });
-    window.addEventListener('mouseup', function() {
-        if (!isDragging) return;
-        isDragging = false;
-        if (dragDeltaX < -THRESHOLD)     goTo(current + 1);
-        else if (dragDeltaX > THRESHOLD) goTo(current - 1);
-        else                              goTo(current);
+    window.addEventListener('mouseup', function () {
+        if (sbDragging) { sbDragging = false; scheduleResume(); }
     });
 
-    // Touch
-    var touchStartX = 0;
-    track.addEventListener('touchstart', function(e) {
-        touchStartX = e.touches[0].clientX;
-        track.style.transition = 'none';
-    }, { passive: true });
-    track.addEventListener('touchend', function(e) {
-        var delta = e.changedTouches[0].clientX - touchStartX;
-        if (delta < -THRESHOLD)     goTo(current + 1);
-        else if (delta > THRESHOLD) goTo(current - 1);
-        else                         goTo(current);
-    });
+    /* ── sync scrollbar on native scroll ── */
+    wrapper.addEventListener('scroll', updateScrollbar, { passive: true });
 
-    // Resize
+    /* ── resize ── */
     var resizeTimer;
-    window.addEventListener('resize', function() {
+    window.addEventListener('resize', function () {
         clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(function() { goTo(current, false); }, 80);
+        resizeTimer = setTimeout(checkOverflow, 100);
     });
 
-    goTo(0, false);
+    /* ── init ── */
+    requestAnimationFrame(function () {
+        wrapper.scrollLeft = minScroll();
+        checkOverflow();
+        autoScrollLoop();
+    });
+
 })();
