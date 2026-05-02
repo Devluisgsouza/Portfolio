@@ -58,8 +58,12 @@ a { text-decoration: none; color: inherit; }
 
 /* ScrollReveal hidden state */
 .efect-txt-top, .efetc-img-top, .efect-profile,
-.img-port-1, .img-port-2, .img-port-3,
 .icons, .efect-contacts, .social-icons, .title {
+    visibility: hidden;
+}
+
+/* Todos os cards do carousel começam ocultos — o ScrollReveal revela cada um */
+.project-card {
     visibility: hidden;
 }
 
@@ -250,6 +254,17 @@ header .logo img:hover { opacity: 0.7; }
     50% { opacity: 0.4; }
 }
 
+@keyframes cardFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(32px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .hero-name {
     font-family: 'Syne', sans-serif;
     font-size: clamp(52px, 7vw, 110px);
@@ -316,17 +331,14 @@ header .logo img:hover { opacity: 0.7; }
 /* Hero image */
 .hero-image {
     position: relative;
-    /* Contain everything within the grid column */
     min-width: 0;
     display: flex;
     justify-content: center;
 }
 .image-frame {
     position: relative;
-    /* Never exceed the column width */
     width: 100%;
     max-width: 380px;
-    /* Extra space at bottom for the tag that sticks out */
     padding-bottom: 32px;
 }
 .image-frame img {
@@ -341,12 +353,11 @@ header .logo img:hover { opacity: 0.7; }
 }
 .image-frame:hover img { filter: grayscale(0%); }
 
-/* Decorative border */
 .image-frame::before {
     content: '';
     position: absolute;
     top: -12px; left: -12px; right: -12px;
-    bottom: 20px; /* account for padding-bottom */
+    bottom: 20px;
     border-radius: 32px 92px 32px 92px;
     border: 1px solid var(--border2);
     z-index: -1;
@@ -504,7 +515,6 @@ header .logo img:hover { opacity: 0.7; }
     text-transform: uppercase;
     letter-spacing: 0.06em;
 }
-/* SVG icons inherit size and color from the parent .skill-icon */
 .skill-svg {
     width: 1em;
     height: 1em;
@@ -531,7 +541,6 @@ header .logo img:hover { opacity: 0.7; }
     justify-content: space-between;
 }
 
-/* nav arrows — hidden by default, JS shows when content overflows */
 .scroll-hint {
     display: flex;
     align-items: center;
@@ -567,12 +576,7 @@ header .logo img:hover { opacity: 0.7; }
     background: var(--surface2);
 }
 
-/* ── Scroll container ──────────────────────────────────────────────
-   Uses native scrollLeft — no translateX, no clipping bugs.
-   Native scrollbar is hidden; we render a custom one below.
-   Horizontal padding mirrors .interface so cards start/end at the
-   same left margin as every other section.
-─────────────────────────────────────────────────────────────────── */
+/* ── Scroll container ── */
 .carousel-wrapper {
     overflow-x: scroll;
     overflow-y: hidden;
@@ -581,9 +585,6 @@ header .logo img:hover { opacity: 0.7; }
     cursor: grab;
     padding-top: 8px;
     padding-bottom: 16px;
-    /* NO horizontal padding here — padding inside overflow:scroll
-       is unreliable across browsers. Offset is handled via
-       margin-left on the first card and ::after on the track. */
     padding-left: 300px;
     padding-right: 0;
 }
@@ -592,22 +593,15 @@ header .logo img:hover { opacity: 0.7; }
 
 .carousel-track {
     display: flex;
-    justify-content: center;
     gap: 24px;
-    /* width: max-content lets the track be as wide as all cards */
-    width: max-conten;
+    width: max-content;
     user-select: none;
 }
 
-/* First card lines up with .interface left edge (5% of viewport,
-   max 65px). Using margin-left is 100% reliable — padding inside
-   overflow:scroll gets swallowed by WebKit on iOS/Android.       */
 .carousel-track > .project-card:first-child {
     margin-left: min(5vw, 65px);
 }
 
-/* Ghost spacer at the end so the last card can scroll fully into
-   the same right margin as the rest of the page.                 */
 .carousel-track::after {
     content: '';
     display: block;
@@ -615,7 +609,7 @@ header .logo img:hover { opacity: 0.7; }
     width: min(5vw, 65px);
 }
 
-/* ── Cards ──────────────────────────────────────────────────────── */
+/* ── Cards ── */
 .project-card {
     flex: 0 0 340px;
     background: var(--surface);
@@ -704,10 +698,7 @@ header .logo img:hover { opacity: 0.7; }
 }
 .card-link:hover { gap: 10px; }
 
-/* ── Custom scrollbar ───────────────────────────────────────────────
-   Sits inside .interface so it shares the same left/right margins.
-   Track is a thin line; thumb is amber and draggable.
-─────────────────────────────────────────────────────────────────── */
+/* ── Custom scrollbar ── */
 .carousel-scrollbar-wrap {
     margin-top: 16px;
 }
@@ -727,12 +718,10 @@ header .logo img:hover { opacity: 0.7; }
     border-radius: 2px;
     cursor: grab;
     transition: background 0.2s;
-    /* width + left driven by JS */
 }
 .carousel-scrollbar-thumb:active  { cursor: grabbing; }
 .carousel-scrollbar-track:hover .carousel-scrollbar-thumb { background: var(--accent2); }
 
-/* dots — replaced by custom scrollbar */
 .carousel-dots { display: none; }
 
 
@@ -802,7 +791,6 @@ header .logo img:hover { opacity: 0.7; }
 }
 a.contact-value:hover { color: var(--accent); }
 
-/* Social links */
 .contacts-right {
     display: flex;
     flex-direction: column;

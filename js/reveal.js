@@ -37,21 +37,25 @@ see.reveal('.icons', {
     delay: 100,
 });
 
-// Projects — animate each card individually with interval
-// Using .project-card directly so ALL cards animate regardless of count
-see.reveal('.project-card', {
-    duration: 900,
-    distance: '32px',
-    origin: 'bottom',
-    interval: 80,   // stagger between each card
-});
-
-// Also reveal the section header (kept img-port-1 class there)
-see.reveal('.img-port-1', {
-    duration: 1000,
-    distance: '40px',
-    origin: 'bottom',
-});
+// Revela os cards do carousel quando a seção entra no viewport
+var projectSection = document.querySelector('.site-projects');
+if (projectSection) {
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                var cards = document.querySelectorAll('.project-card');
+                cards.forEach(function(card, i) {
+                    setTimeout(function() {
+                        card.style.visibility = 'visible';
+                        card.style.animation = 'cardFadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards';
+                    }, i * 80);
+                });
+                observer.disconnect();
+            }
+        });
+    }, { threshold: 0.1 });
+    observer.observe(projectSection);
+}
 
 // Contacts
 see.reveal('.efect-contacts', {
