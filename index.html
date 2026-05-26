@@ -6,110 +6,112 @@
     <link rel="icon" href="images/logo.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/955765ebb4.js" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/scrollreveal"></script>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css" media="screen">
-    <script src="js/reveal.js" defer></script>
     <script src="js/btn-menu-mob.js" defer></script>
+    <script src="js/reveal.js" defer></script>
+    <script src="js/carousel.js" defer></script>
     <title>Luis Souza — Developer</title>
 </head>
 <body>
 
-    <!-- Grain overlay -->
     <div class="grain"></div>
+    <div class="bg-glow" aria-hidden="true"></div>
 
     <header id="header">
         <div class="interface header-inner">
             <div class="logo">
-                <a href="#">
-                    <img src="images/logo.png" alt="Logotipo">
-                </a>
+                <a href="#"><img src="images/logo.png" alt="LS Logo"></a>
             </div>
 
-            <nav class="menu-desktop">
+            <nav class="menu-desktop" aria-label="Navegação principal">
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#site-profile">Profile</a></li>
-                    <li><a href="#site-projects">Projects</a></li>
-                    <li><a href="#site-contacts">Contacts</a></li>
+                    <li><a href="#">Início</a></li>
+                    <li><a href="#site-profile">Perfil</a></li>
+                    <li><a href="#site-projects">Projetos</a></li>
+                    <li><a href="#site-contacts">Contato</a></li>
                 </ul>
             </nav>
 
-            <a href="https://wa.me/5512978145677" class="btn-contact">
-                Contact me <span class="btn-arrow">↗</span>
+            <a href="https://wa.me/5512978145677" class="btn-contact" target="_blank" rel="noopener noreferrer">
+                Fale comigo <span class="btn-arrow" aria-hidden="true">↗</span>
             </a>
 
-            <button class="btn-menu-mob" id="btn-menu-mob" aria-label="Menu">
+            <button class="btn-menu-mob" id="btn-menu-mob" aria-label="Toggle navigation menu">
                 <div class="line-menu-mob1"></div>
                 <div class="line-menu-mob2"></div>
             </button>
         </div>
 
-        <nav class="menu-mobile" id="menu-mobile">
+        <nav class="menu-mobile" id="menu-mobile" aria-label="Navegação mobile">
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#site-profile">Profile</a></li>
-                <li><a href="#site-projects">Projects</a></li>
-                <li><a href="#site-contacts">Contacts</a></li>
+                <li><a href="#">Início</a></li>
+                <li><a href="#site-profile">Perfil</a></li>
+                <li><a href="#site-projects">Projetos</a></li>
+                <li><a href="#site-contacts">Contato</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
+
         <!-- ===== HERO ===== -->
         <section class="site-top" id="site-top">
             <div class="interface">
                 <div class="hero-grid">
-                    <div class="hero-text efect-txt-top">
-                        <p class="hero-eyebrow"><span class="dot"></span> Available for opportunities</p>
+
+                    <div class="hero-text" data-reveal>
+                        <p class="hero-eyebrow">
+                            <span class="dot" aria-hidden="true"></span>
+                            Disponível para oportunidades
+                        </p>
                         <h1 class="hero-name">
                             <span class="name-accent">Luis</span><br>
                             Guilherme<br>
                             <span class="name-outline">de Souza</span>
                         </h1>
-                        <p class="hero-role">Software Developer</p>
-                        <p class="hero-desc">Technology and creativity have always been my focus. Looking for new opportunities to demonstrate my skills and acquire new knowledge.</p>
+                        <p class="hero-role" id="hero-role" aria-label="Desenvolvedor de Software"></p>
+                        <p class="hero-desc">Tecnologia e criatividade sempre foram o meu foco. Em busca de novas oportunidades para demonstrar minhas habilidades e adquirir novos conhecimentos.</p>
                         <div class="hero-cta">
-                            <a href="#site-projects" class="btn-primary">View Projects <span>↓</span></a>
-                            <a href="#site-contacts" class="btn-ghost">Get in touch</a>
+                            <a href="#site-projects" class="btn-primary">Ver Projetos <span aria-hidden="true">↓</span></a>
+                            <a href="#site-contacts" class="btn-ghost">Entrar em contato</a>
                         </div>
                     </div>
 
-                    <div class="hero-image efetc-img-top">
+                    <div class="hero-image" data-reveal data-delay="1">
                         <div class="image-frame">
                             <a href="#site-profile">
-                                <img src="images/avatar_perfil.png" alt="Luis Guilherme">
+                                <img src="images/avatar_perfil.png" alt="Luis Guilherme de Souza — Desenvolvedor de Software">
                             </a>
-                            <div class="image-tag">
-                                <span class="dm-mono">Based in</span>
+                            <div class="image-tag" aria-hidden="true">
+                                <span class="dm-mono">Localização</span>
                                 <strong>Brasil, SP</strong>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Floating stats bar -->
-                <div class="stats-bar efect-txt-top">
-                    <div class="stat">
+                <div class="stats-bar" data-reveal data-delay="2" role="list" aria-label="Dados principais">
+                    <div class="stat" role="listitem">
                         <span class="stat-num">5+</span>
-                        <span class="stat-label">Languages</span>
+                        <span class="stat-label">Linguagens</span>
                     </div>
-                    <div class="stat-divider"></div>
-                    <div class="stat">
+                    <div class="stat-divider" aria-hidden="true"></div>
+                    <div class="stat" role="listitem">
                         <span class="stat-num">4+</span>
-                        <span class="stat-label">Projects</span>
+                        <span class="stat-label">Projetos</span>
                     </div>
-                    <div class="stat-divider"></div>
-                    <div class="stat">
+                    <div class="stat-divider" aria-hidden="true"></div>
+                    <div class="stat" role="listitem">
                         <span class="stat-num">26</span>
-                        <span class="stat-label">Years old</span>
+                        <span class="stat-label">Anos</span>
                     </div>
-                    <div class="stat-divider"></div>
-                    <div class="stat">
-                        <span class="stat-num">Junior</span>
-                        <span class="stat-label">Degree</span>
+                    <div class="stat-divider" aria-hidden="true"></div>
+                    <div class="stat" role="listitem">
+                        <span class="stat-num">ADS</span>
+                        <span class="stat-label">Formação</span>
                     </div>
                 </div>
             </div>
@@ -118,32 +120,21 @@
         <!-- ===== PROFILE ===== -->
         <section class="site-profile" id="site-profile">
             <div class="interface">
-                <div class="section-header efect-profile">
-                    <span class="section-tag dm-mono">// 01 — about</span>
-                    <h2 class="section-title">About <span>me</span></h2>
+                <div class="section-header" data-reveal>
+                    <span class="section-tag dm-mono">// 01 — sobre</span>
+                    <h2 class="section-title">Sobre <span>mim</span></h2>
                 </div>
 
-                <div class="profile-grid efect-profile">
+                <div class="profile-grid" data-reveal>
                     <div class="profile-text">
-                        <p>
-                            Hello, I'm <strong>Luis Guilherme de Souza</strong>, 26 years old, with a degree in
-                            Systems Analysis and Development. I'm looking for opportunities to apply and improve
-                            my knowledge in technology.
-                        </p>
-                        <p>
-                            During my academic career, I developed skills in <mark>data analysis</mark>,
-                            <mark>databases</mark>, and <mark>software development</mark>. My expertise is in
-                            developing <mark>Mobile Apps</mark>, <mark>Websites</mark> and <mark>Landing Pages</mark>.
-                        </p>
-                        <p>
-                            I'm dedicated, responsible, and passionate about learning new technologies —
-                            able to work in a team and rise to any challenge.
-                        </p>
+                        <p>Olá, sou <strong>Luis Guilherme de Souza</strong>, 26 anos, formado em Análise e Desenvolvimento de Sistemas. Estou em busca de oportunidades para aplicar e aprimorar meus conhecimentos em tecnologia.</p>
+                        <p>Durante minha trajetória acadêmica, desenvolvi habilidades em <mark>análise de dados</mark>, <mark>bancos de dados</mark> e <mark>desenvolvimento de software</mark>. Minha especialidade está no desenvolvimento de <mark>Apps Mobile</mark>, <mark>Websites</mark> e <mark>Landing Pages</mark>.</p>
+                        <p>Sou dedicado, responsável e apaixonado por aprender novas tecnologias — consigo trabalhar em equipe e encarar qualquer desafio.</p>
                     </div>
 
                     <div class="profile-aside">
                         <div class="aside-card">
-                            <span class="aside-label dm-mono">Languages</span>
+                            <span class="aside-label dm-mono">Linguagens</span>
                             <ul class="aside-list">
                                 <li>HTML5 &amp; CSS3</li>
                                 <li>JavaScript</li>
@@ -161,56 +152,45 @@
                     </div>
                 </div>
 
-                <!-- Skills icons -->
-                <div class="skills-row">
-                    <p class="section-tag dm-mono">// skills</p>
+                <div class="skills-row" data-reveal data-delay="1">
+                    <p class="section-tag dm-mono">// habilidades</p>
                     <div class="icons">
-                        <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="skill-icon" title="HTML5">
-                            <i class="fa-brands fa-html5"></i>
-                            <span>HTML5</span>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="skill-icon" title="HTML5" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-html5" aria-hidden="true"></i><span>HTML5</span>
                         </a>
-                        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="skill-icon" title="CSS3">
-                            <i class="fa-brands fa-css"></i>
-                            <span>CSS3</span>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="skill-icon" title="CSS3" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-css" aria-hidden="true"></i><span>CSS3</span>
                         </a>
-                        <a href="https://www.python.org/" class="skill-icon" title="Python">
-                            <i class="fa-brands fa-python"></i>
-                            <span>Python</span>
+                        <a href="https://www.python.org/" class="skill-icon" title="Python" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-python" aria-hidden="true"></i><span>Python</span>
                         </a>
-                        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="skill-icon" title="JavaScript">
-                            <i class="fa-brands fa-square-js"></i>
-                            <span>JS</span>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="skill-icon" title="JavaScript" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-square-js" aria-hidden="true"></i><span>JS</span>
                         </a>
-                        <a href="https://react.dev/" class="skill-icon" title="React">
-                            <i class="fa-brands fa-react"></i>
-                            <span>React</span>
+                        <a href="https://www.typescriptlang.org/" class="skill-icon" title="TypeScript" target="_blank" rel="noopener noreferrer">
+                            <svg class="skill-svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0zm17.363 9.75c.612 0 1.154.037 1.627.111a6.38 6.38 0 0 1 1.306.34v2.458a3.95 3.95 0 0 0-.643-.361 5.093 5.093 0 0 0-.717-.26 5.453 5.453 0 0 0-1.426-.2c-.3 0-.573.028-.819.086a2.1 2.1 0 0 0-.623.242c-.17.104-.3.229-.393.374a.888.888 0 0 0-.14.49c0 .196.053.373.156.529.104.156.252.304.443.444s.423.276.696.41c.273.135.582.274.926.416.47.197.892.407 1.266.628.374.222.695.473.963.753.268.279.472.598.614.957.142.359.214.776.214 1.253 0 .657-.125 1.21-.373 1.656a3.033 3.033 0 0 1-1.012 1.085 4.38 4.38 0 0 1-1.487.596c-.566.12-1.163.18-1.79.18a9.916 9.916 0 0 1-1.84-.164 5.544 5.544 0 0 1-1.512-.493v-2.63a5.033 5.033 0 0 0 3.237 1.2c.333 0 .624-.03.872-.09.249-.06.456-.144.623-.25.166-.108.29-.234.373-.38a1.023 1.023 0 0 0-.074-1.089 2.12 2.12 0 0 0-.537-.5 5.597 5.597 0 0 0-.807-.444 27.72 27.72 0 0 0-1.007-.436c-.918-.383-1.602-.852-2.053-1.405-.45-.553-.676-1.222-.676-2.005 0-.614.123-1.141.369-1.582.246-.441.58-.804 1.004-1.089a4.494 4.494 0 0 1 1.47-.629 7.536 7.536 0 0 1 1.77-.201zm-15.113.188h9.563v2.166H9.506v9.646H6.789v-9.646H3.375z"/></svg>
+                            <span>TS</span>
                         </a>
-                        <a href="https://git-scm.com/" class="skill-icon" title="Git">
-                            <svg class="skill-svg" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M23.546 10.93L13.067.452a1.55 1.55 0 0 0-2.188 0L8.708 2.627l2.76 2.76a1.838 1.838 0 0 1 2.327 2.344l2.658 2.658a1.838 1.838 0 1 1-1.1 1.048l-2.48-2.48v6.511a1.84
-                                 1.84 0 1 1-1.512-.043V9.001a1.84 1.84 0 0 1-.998-2.418L7.617 3.835 .45 11c-.6.6-.6 1.572 0 2.173l10.48 10.478a1.55 1.55 0 0 0 2.188 0l10.428-10.428a1.55 1.55 0 0 0 0-2.292z"/>
-                            </svg>
+                        <a href="https://react.dev/" class="skill-icon" title="React" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-react" aria-hidden="true"></i><span>React</span>
+                        </a>
+                        <a href="https://reactnative.dev/" class="skill-icon" title="React Native" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-react" aria-hidden="true"></i><span>RN</span>
+                        </a>
+                        <a href="https://git-scm.com/" class="skill-icon" title="Git" target="_blank" rel="noopener noreferrer">
+                            <svg class="skill-svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.546 10.93L13.067.452a1.55 1.55 0 0 0-2.188 0L8.708 2.627l2.76 2.76a1.838 1.838 0 0 1 2.327 2.344l2.658 2.658a1.838 1.838 0 1 1-1.1 1.048l-2.48-2.48v6.511a1.84 1.84 0 1 1-1.512-.043V9.001a1.84 1.84 0 0 1-.998-2.418L7.617 3.835.45 11c-.6.6-.6 1.572 0 2.173l10.48 10.478a1.55 1.55 0 0 0 2.188 0l10.428-10.428a1.55 1.55 0 0 0 0-2.292z"/></svg>
                             <span>Git</span>
                         </a>
-                        <a href="https://tailwindcss.com/" class="skill-icon" title="Tailwind">
-                            <svg class="skill-svg" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 6C9.33 6 7.67 7.33 7 10c1-1.33 2.17-1.83 3.5-1.5.76.19 1.3.74 1.9 1.35C13.37 10.82 14.57 12 17 12c2.67 0 4.33-1.33 5-4-1 1.33-2.17 1.83-3.5 1.5-.76-.19-1.3-.74-1.9-1.35C15.63
-                                 7.18 14.43 6 12 6zm-5 6C4.33 12 2.67 13.33 2 16c1-1.33 2.17-1.83 3.5-1.5.76.19 1.3.74 1.9 1.35C8.37 16.82 9.57 18 12 18c2.67 0 4.33-1.33 5-4-1 1.33-2.17 1.83-3.5 1.5-.76-.19-1.3-.74-1.9-1.35C11.63 13.18 10.43 12 7 12z"/>
-                            </svg>
+                        <a href="https://tailwindcss.com/" class="skill-icon" title="Tailwind" target="_blank" rel="noopener noreferrer">
+                            <svg class="skill-svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 6C9.33 6 7.67 7.33 7 10c1-1.33 2.17-1.83 3.5-1.5.76.19 1.3.74 1.9 1.35C13.37 10.82 14.57 12 17 12c2.67 0 4.33-1.33 5-4-1 1.33-2.17 1.83-3.5 1.5-.76-.19-1.3-.74-1.9-1.35C15.63 7.18 14.43 6 12 6zm-5 6C4.33 12 2.67 13.33 2 16c1-1.33 2.17-1.83 3.5-1.5.76.19 1.3.74 1.9 1.35C8.37 16.82 9.57 18 12 18c2.67 0 4.33-1.33 5-4-1 1.33-2.17 1.83-3.5 1.5-.76-.19-1.3-.74-1.9-1.35C11.63 13.18 10.43 12 7 12z"/></svg>
                             <span>Tailwind</span>
                         </a>
-                        <a href="https://claude.ai/code" class="skill-icon" title="Claude Code">
-                            <svg class="skill-svg" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M17.304 1.993a.85.85 0 0 1 .448 1.116L12.038 16.29a.85.85 0 1 1-1.564-.668L16.188 2.44a.85.85 0 0 1 1.116-.448zM6.747 6.504a.85.85 0 0 1 0 1.202L3.453 11l3.294 3.294a.85.85
-                                 0 1 1-1.202 1.202L1.648 11.6a.85.85 0 0 1 0-1.202l3.897-3.895a.85.85 0 0 1 1.202 0zm10.506 0a.85.85 0 0 1 1.202 0l3.897 3.896a.85.85 0 0 1 0 1.202l-3.897 3.896a.85.85 0 1 1-1.202-1.202L20.547 11l-3.294-3.294a.85.85 0 0 1 0-1.202z"/>
-                            </svg>
+                        <a href="https://claude.ai/code" class="skill-icon" title="Claude Code" target="_blank" rel="noopener noreferrer">
+                            <svg class="skill-svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.304 1.993a.85.85 0 0 1 .448 1.116L12.038 16.29a.85.85 0 1 1-1.564-.668L16.188 2.44a.85.85 0 0 1 1.116-.448zM6.747 6.504a.85.85 0 0 1 0 1.202L3.453 11l3.294 3.294a.85.85 0 1 1-1.202 1.202L1.648 11.6a.85.85 0 0 1 0-1.202l3.897-3.895a.85.85 0 0 1 1.202 0zm10.506 0a.85.85 0 0 1 1.202 0l3.897 3.896a.85.85 0 0 1 0 1.202l-3.897 3.896a.85.85 0 1 1-1.202-1.202L20.547 11l-3.294-3.294a.85.85 0 0 1 0-1.202z"/></svg>
                             <span>Claude</span>
                         </a>
-                        
-                        <a href="https://cursor.com/" class="skill-icon" title="Cursor">
-                            <svg class="skill-svg" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M11.925 1 22.85 7.5v13L11.925 27 1 20.5v-13zm.175 8.5L6.25 12.5l5.85 3.5 5.65-3.5z"/>
-                            </svg>
+                        <a href="https://cursor.com/" class="skill-icon" title="Cursor" target="_blank" rel="noopener noreferrer">
+                            <svg class="skill-svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.925 1 22.85 7.5v13L11.925 27 1 20.5v-13zm.175 8.5L6.25 12.5l5.85 3.5 5.65-3.5z"/></svg>
                             <span>Cursor</span>
                         </a>
                     </div>
@@ -221,30 +201,95 @@
         <!-- ===== PROJECTS ===== -->
         <section class="site-projects" id="site-projects">
             <div class="interface">
-                <div class="section-header img-port-1">
-                    <span class="section-tag dm-mono">// 02 — work</span>
-                    <div class="projects-header-row">
-                        <h2 class="section-title">My <span>Projects</span></h2>
-                        <div class="scroll-hint dm-mono">
-                            <span>scroll</span>
-                            <div class="scroll-arrows">
-                                <button class="proj-nav" id="proj-prev" aria-label="Previous">←</button>
-                                <button class="proj-nav" id="proj-next" aria-label="Next">→</button>
+                <div class="section-header" data-reveal>
+                    <span class="section-tag dm-mono">// 02 — projetos</span>
+                    <h2 class="section-title">Meus <span>Projetos</span></h2>
+                </div>
+
+                <div class="projects-grid">
+
+                    <!-- 01 · Vitto — Featured -->
+                    <article class="project-card project-featured" data-reveal data-project="vitto"
+                             role="button" tabindex="0" aria-label="Abrir detalhes do projeto Vitto">
+                        <div class="featured-content">
+                            <div class="featured-left">
+                                <div class="card-meta dm-mono">
+                                    <span class="card-num">01</span>
+                                    <span class="card-tag">SaaS / Web App</span>
+                                </div>
+                                <div class="featured-badge">
+                                    <span aria-hidden="true">✦</span> Projeto em Destaque
+                                </div>
+                                <h3 class="card-title">Vitto</h3>
+                                <p class="card-desc">SaaS de gestão inteligente para clínicas e consultórios brasileiros. Automatiza agenda, prontuários por voz, atendimento via WhatsApp com IA e controle financeiro.</p>
+                                <div class="card-stack">
+                                    <span>Next.js</span><span>TypeScript</span><span>Tailwind CSS</span>
+                                    <span>Prisma</span><span>PostgreSQL</span><span>Anthropic AI</span>
+                                </div>
+                                <div class="card-link featured-link">
+                                    Ver detalhes <span aria-hidden="true">→</span>
+                                </div>
+                            </div>
+                            <div class="featured-visual" aria-hidden="true">
+                                <svg viewBox="0 0 320 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="320" height="200" rx="12" fill="#080c14"/>
+                                    <rect width="320" height="28" fill="#0d1422"/>
+                                    <rect y="16" width="320" height="12" fill="#0d1422"/>
+                                    <circle cx="14" cy="14" r="4" fill="#ff5f57" opacity="0.7"/>
+                                    <circle cx="28" cy="14" r="4" fill="#ffbd2e" opacity="0.7"/>
+                                    <circle cx="42" cy="14" r="4" fill="#28c840" opacity="0.7"/>
+                                    <text x="82" y="18" font-family="monospace" font-size="7.5" fill="#3d5575">vitto.app — Dashboard</text>
+                                    <rect x="8" y="34" width="70" height="42" rx="6" fill="#0d1422"/>
+                                    <rect x="86" y="34" width="70" height="42" rx="6" fill="#0d1422"/>
+                                    <rect x="164" y="34" width="70" height="42" rx="6" fill="#0d1422"/>
+                                    <rect x="242" y="34" width="70" height="42" rx="6" fill="#0d1422"/>
+                                    <text x="15" y="49" font-family="monospace" font-size="5.5" fill="#3d5575">AGENDA</text>
+                                    <text x="93" y="49" font-family="monospace" font-size="5.5" fill="#3d5575">PACIENTES</text>
+                                    <text x="171" y="49" font-family="monospace" font-size="5.5" fill="#3d5575">RECEITA</text>
+                                    <text x="249" y="49" font-family="monospace" font-size="5.5" fill="#3d5575">IA MSGS</text>
+                                    <text x="15" y="67" font-family="monospace" font-size="11" font-weight="bold" fill="#00e5cc">24</text>
+                                    <text x="93" y="67" font-family="monospace" font-size="11" font-weight="bold" fill="#00e5cc">142</text>
+                                    <text x="171" y="67" font-family="monospace" font-size="10" font-weight="bold" fill="#00e5cc">R$8.4k</text>
+                                    <text x="249" y="67" font-family="monospace" font-size="11" font-weight="bold" fill="#00e5cc">98</text>
+                                    <rect x="8" y="84" width="194" height="108" rx="6" fill="#0d1422"/>
+                                    <text x="16" y="97" font-family="monospace" font-size="5.5" fill="#3d5575">CONSULTAS / SEMANA</text>
+                                    <line x1="16" y1="108" x2="194" y2="108" stroke="#1a2d45" stroke-width="0.8"/>
+                                    <line x1="16" y1="120" x2="194" y2="120" stroke="#1a2d45" stroke-width="0.8"/>
+                                    <line x1="16" y1="132" x2="194" y2="132" stroke="#1a2d45" stroke-width="0.8"/>
+                                    <line x1="16" y1="144" x2="194" y2="144" stroke="#1a2d45" stroke-width="0.8"/>
+                                    <line x1="16" y1="156" x2="194" y2="156" stroke="#1a2d45" stroke-width="0.8"/>
+                                    <polyline points="22,152 52,138 82,146 112,122 142,132 166,108 192,116" stroke="#00e5cc" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <polygon points="22,152 52,138 82,146 112,122 142,132 166,108 192,116 192,170 22,170" fill="#00e5cc" opacity="0.07"/>
+                                    <circle cx="166" cy="108" r="4" fill="#00e5cc"/>
+                                    <circle cx="192" cy="116" r="4" fill="#00e5cc"/>
+                                    <circle cx="166" cy="108" r="14" fill="#00e5cc" opacity="0.07"/>
+                                    <rect x="210" y="84" width="102" height="50" rx="6" fill="#0d1422"/>
+                                    <text x="218" y="97" font-family="monospace" font-size="5.5" fill="#3d5575">PRÓXIMAS</text>
+                                    <rect x="218" y="102" width="86" height="0.8" fill="#1a2d45"/>
+                                    <circle cx="222" cy="112" r="3" fill="#00e5cc" opacity="0.8"/>
+                                    <rect x="230" y="109" width="60" height="3.5" rx="1.75" fill="#1a2d45"/>
+                                    <rect x="230" y="116" width="44" height="2.5" rx="1.25" fill="#152030"/>
+                                    <circle cx="222" cy="126" r="3" fill="#00e5cc" opacity="0.4"/>
+                                    <rect x="230" y="123" width="52" height="3.5" rx="1.75" fill="#1a2d45"/>
+                                    <rect x="230" y="130" width="36" height="2.5" rx="1.25" fill="#152030"/>
+                                    <rect x="210" y="142" width="102" height="50" rx="6" fill="#0d1422"/>
+                                    <text x="218" y="155" font-family="monospace" font-size="5.5" fill="#3d5575">WHATSAPP IA</text>
+                                    <rect x="218" y="160" width="86" height="0.8" fill="#1a2d45"/>
+                                    <rect x="218" y="165" width="58" height="9" rx="4.5" fill="#1a2d45"/>
+                                    <rect x="250" y="178" width="42" height="9" rx="4.5" fill="#00e5cc" opacity="0.2"/>
+                                    <circle cx="304" cy="185" r="3" fill="#28c840" opacity="0.8"/>
+                                </svg>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
+                    </article>
 
-            <!-- Full-width carousel -->
-            <div class="carousel-wrapper">
-                <div class="carousel-track" id="carousel-track">
-
-                    <article class="project-card img-port-1">
+                    <!-- 02 · Costs -->
+                    <article class="project-card" data-reveal data-delay="1" data-project="costs"
+                             role="button" tabindex="0" aria-label="Abrir detalhes do projeto Costs">
                         <div class="card-image" style="background-image: url(images/costs.png)"></div>
                         <div class="card-body">
                             <div class="card-meta dm-mono">
-                                <span class="card-num">01</span>
+                                <span class="card-num">02</span>
                                 <span class="card-tag">Web App</span>
                             </div>
                             <h3 class="card-title">Costs</h3>
@@ -252,31 +297,13 @@
                             <div class="card-stack">
                                 <span>React</span><span>CSS</span><span>JavaScript</span>
                             </div>
-                            <a href="https://costsprojects.netlify.app/" class="card-link" target="_blank">
-                                Live demo <span>↗</span>
-                            </a>
+                            <div class="card-link">Ver detalhes <span aria-hidden="true">→</span></div>
                         </div>
                     </article>
 
-                    <article class="project-card img-port-2">
-                        <div class="card-image" style="background-image: url(images/projeto2.png)"></div>
-                        <div class="card-body">
-                            <div class="card-meta dm-mono">
-                                <span class="card-num">02</span>
-                                <span class="card-tag">Web App</span>
-                            </div>
-                            <h3 class="card-title">Chat Fúria</h3>
-                            <p class="card-desc">Real-time chat application with dynamic messaging and responsive interface design.</p>
-                            <div class="card-stack">
-                                <span>HTML</span><span>CSS</span><span>JavaScript</span>
-                            </div>
-                            <a href="https://chat-furia.netlify.app/" class="card-link" target="_blank">
-                                Live demo <span>↗</span>
-                            </a>
-                        </div>
-                    </article>
-
-                    <article class="project-card img-port-3">
+                    <!-- 03 · Weather City -->
+                    <article class="project-card" data-reveal data-delay="1" data-project="weather"
+                             role="button" tabindex="0" aria-label="Abrir detalhes do projeto Weather City">
                         <div class="card-image" style="background-image: url(images/weather.png)"></div>
                         <div class="card-body">
                             <div class="card-meta dm-mono">
@@ -286,14 +313,15 @@
                             <h3 class="card-title">Weather City</h3>
                             <p class="card-desc">Weather forecast app with city search and real-time data from a public API.</p>
                             <div class="card-stack">
-                                <span>HTML</span><span>CSS</span><span>JavaScript</span>
+                                <span>HTML</span><span>CSS</span><span>JavaScript</span><span>OpenWeather API</span>
                             </div>
-                            <a href="https://weathercitypage.netlify.app/" class="card-link" target="_blank">
-                                Live demo <span>↗</span>
-                            </a>
+                            <div class="card-link">Ver detalhes <span aria-hidden="true">→</span></div>
                         </div>
                     </article>
-                    <article class="project-card img-port-4">
+
+                    <!-- 04 · Users List -->
+                    <article class="project-card" data-reveal data-delay="2" data-project="users"
+                             role="button" tabindex="0" aria-label="Abrir detalhes do projeto Users List">
                         <div class="card-image" style="background-image: url(images/user_list.png)"></div>
                         <div class="card-body">
                             <div class="card-meta dm-mono">
@@ -301,31 +329,14 @@
                                 <span class="card-tag">Repository</span>
                             </div>
                             <h3 class="card-title">Users List</h3>
-                            <p class="card-desc">Aplication for searching and viewing users by consuming the publick API.</p>
+                            <p class="card-desc">Application for searching and viewing users by consuming the public GitHub API.</p>
                             <div class="card-stack">
-                                <span>HTML</span><span>CSS</span><span>JavaScript</span>
+                                <span>HTML</span><span>CSS</span><span>JavaScript</span><span>GitHub API</span>
                             </div>
-                            <a href="https://github.com/Devluisgsouza/users-list" class="card-link" target="_blank">
-                                View GitHub <span>↗</span>
-                            </a>
+                            <div class="card-link">Ver detalhes <span aria-hidden="true">→</span></div>
                         </div>
                     </article>
-                    
-     
-                    <!-- FUTURE PROJECTS: duplicate an <article class="project-card"> block above -->
 
-                </div>
-            </div>
-
-            <!-- Dots (hidden, kept for JS compat) -->
-            <div class="carousel-dots" id="carousel-dots"></div>
-
-            <!-- Custom scrollbar — inside .interface for correct margins -->
-            <div class="interface">
-                <div class="carousel-scrollbar-wrap" id="carousel-scrollbar-wrap">
-                    <div class="carousel-scrollbar-track" id="carousel-scrollbar-track">
-                        <div class="carousel-scrollbar-thumb" id="carousel-scrollbar-thumb"></div>
-                    </div>
                 </div>
             </div>
         </section>
@@ -333,65 +344,83 @@
         <!-- ===== CONTACTS ===== -->
         <section class="site-contacts" id="site-contacts">
             <div class="interface">
-                <div class="section-header efect-contacts">
-                    <span class="section-tag dm-mono">// 03 — contact</span>
-                    <h2 class="section-title">Get in <span>touch</span></h2>
+                <div class="section-header" data-reveal>
+                    <span class="section-tag dm-mono">// 03 — contato</span>
+                    <h2 class="section-title">Entre em <span>contato</span></h2>
                 </div>
 
-                <div class="contacts-grid efect-contacts">
-                    <div class="contacts-left">
-                        <p class="contacts-intro">Have a project in mind or want to chat? I'm always open to new opportunities.</p>
-
+                <div class="contacts-grid">
+                    <div class="contacts-left" data-reveal>
+                        <p class="contacts-intro">Tem um projeto em mente ou quer conversar? Estou sempre aberto a novas oportunidades.</p>
                         <ul class="contact-list">
                             <li>
-                                <span class="contact-icon"><i class="fa-solid fa-envelope"></i></span>
+                                <span class="contact-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,4 12,13 2,4"/></svg>
+                                </span>
                                 <div>
-                                    <span class="contact-label dm-mono">Email</span>
+                                    <span class="contact-label dm-mono">E-mail</span>
                                     <a href="mailto:devlgsouza@gmail.com" class="contact-value">devlgsouza@gmail.com</a>
                                 </div>
                             </li>
                             <li>
-                                <span class="contact-icon"><i class="fa-solid fa-phone"></i></span>
+                                <span class="contact-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                                </span>
                                 <div>
                                     <span class="contact-label dm-mono">WhatsApp</span>
-                                    <a href="https://wa.me/5512978145677" class="contact-value">+55 (12) 97814-5677</a>
+                                    <a href="https://wa.me/5512978145677" class="contact-value" target="_blank" rel="noopener noreferrer">+55 (12) 97814-5677</a>
                                 </div>
                             </li>
                             <li>
-                                <span class="contact-icon"><i class="fa-solid fa-location-dot"></i></span>
+                                <span class="contact-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                </span>
                                 <div>
-                                    <span class="contact-label dm-mono">Location</span>
+                                    <span class="contact-label dm-mono">Localização</span>
                                     <span class="contact-value">Jacareí, SP — Brasil</span>
                                 </div>
                             </li>
                         </ul>
                     </div>
 
-                    <div class="contacts-right social-icons">
-                        <p class="dm-mono" style="font-size:12px; color: var(--muted); margin-bottom: 24px;">// socials</p>
-                        <a href="https://github.com/Devluisgsouza" class="social-link" target="_blank">
-                            <i class="fa-brands fa-github"></i>
+                    <div class="contacts-right" data-reveal data-delay="1">
+                        <p class="dm-mono" style="font-size:12px; color: var(--muted); margin-bottom: 24px;">// redes sociais</p>
+                        <a href="https://github.com/Devluisgsouza" class="social-link" target="_blank" rel="noopener noreferrer">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                             <span>GitHub</span>
-                            <span class="social-arrow">↗</span>
+                            <span class="social-arrow" aria-hidden="true">↗</span>
                         </a>
-                        <a href="https://www.linkedin.com/in/luis-guilherme-de-souza-7b5a75318" class="social-link" target="_blank">
-                            <i class="fa-brands fa-linkedin"></i>
+                        <a href="https://www.linkedin.com/in/luis-guilherme-de-souza-7b5a75318" class="social-link" target="_blank" rel="noopener noreferrer">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                             <span>LinkedIn</span>
-                            <span class="social-arrow">↗</span>
+                            <span class="social-arrow" aria-hidden="true">↗</span>
                         </a>
                     </div>
                 </div>
             </div>
         </section>
+
     </main>
 
     <footer>
         <div class="interface footer-inner">
             <span class="dm-mono">Luis Guilherme de Souza</span>
-            <span class="dm-mono footer-copy">© 2025 — All rights reserved</span>
+            <span class="dm-mono footer-copy">© 2025 — Todos os direitos reservados</span>
         </div>
     </footer>
 
-    <script src="js/carousel.js" defer></script>
+    <!-- Project Details Modal -->
+    <div class="modal-overlay" id="modal-overlay" aria-hidden="true">
+        <div class="modal-container" id="modal-container" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <button class="modal-close" id="modal-close" aria-label="Fechar detalhes do projeto">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="18" height="18" aria-hidden="true">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+            <div class="modal-body" id="modal-body"></div>
+        </div>
+    </div>
+
 </body>
 </html>

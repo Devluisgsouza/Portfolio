@@ -1,243 +1,215 @@
 // =============================================
-//  PROJECTS CAROUSEL
-//  ─ auto-scroll left→right, then smoothly back
-//  ─ native scrollLeft — zero translateX
-//  ─ pauses on hover / touch / drag
-//  ─ resumes after 2 s of inactivity
-//  ─ custom draggable scrollbar
-//  ─ ← → buttons shown only when needed
+//  PORTFOLIO — Typewriter + Project Modal
 // =============================================
 
 (function () {
+    'use strict';
 
-    var wrapper = document.querySelector('.carousel-wrapper');
-    var track   = document.getElementById('carousel-track');
-    var sbTrack = document.getElementById('carousel-scrollbar-track');
-    var sbThumb = document.getElementById('carousel-scrollbar-thumb');
-    var prevBtn = document.getElementById('proj-prev');
-    var nextBtn = document.getElementById('proj-next');
-    var hint    = document.querySelector('.scroll-hint');
-
-    if (!wrapper || !track) return;
-
-    /* ── constants ── */
-    var AUTO_SPEED    = 0.5;    // px per frame going forward
-    var RETURN_SPEED  = 0.35;   // px per frame returning (slower = smoother)
-    var RESUME_DELAY  = 2000;   // ms idle before auto resumes
-
-    /* ── state ── */
-    var paused      = false;
-    var returning   = false;    // true while scrolling back to start
-    var resumeTimer = null;
-
-    /* ── measurements ── */
-    function cardStep() {
-        var card = track.querySelector('.project-card');
-        if (!card) return 364;
-        var gap = parseInt(window.getComputedStyle(track).gap) || 24;
-        return card.offsetWidth + gap;
-    }
-
-    function minScroll() {
-        var first = track.querySelector('.project-card');
-        return first ? first.offsetLeft : 0;
-    }
-
-    function maxScroll() {
-        return wrapper.scrollWidth - wrapper.clientWidth;
-    }
-
-    /* ── scrollbar ── */
-    function updateScrollbar() {
-        if (!sbThumb || !sbTrack) return;
-        var scrollable = maxScroll();
-        if (scrollable <= 0) {
-            sbThumb.style.width = '100%';
-            sbThumb.style.left  = '0';
-            return;
+    /* ── Project data ──────────────────────────── */
+    var projects = {
+        vitto: {
+            number: '01',
+            name: 'Vitto',
+            type: 'SaaS / Web App',
+            featured: true,
+            description: 'SaaS de gestão inteligente para clínicas e consultórios brasileiros. Automatiza agenda, prontuários por voz, atendimento via WhatsApp com IA e controle financeiro — tudo em uma plataforma.',
+            stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Prisma', 'PostgreSQL', 'Anthropic AI', 'WhatsApp API'],
+            features: [
+                'Agenda inteligente com confirmação automática via WhatsApp',
+                'Prontuário eletrônico gerado por voz com IA',
+                'Agente de WhatsApp 24h para confirmações e reengajamento',
+                'Financeiro automatizado com cobranças e relatórios',
+                'Dashboard em tempo real com métricas da clínica',
+                'Multi-profissional e LGPD compliant'
+            ],
+            link: 'https://vitto-eta.vercel.app/',
+            linkLabel: 'Ver Projeto ↗'
+        },
+        costs: {
+            number: '02',
+            name: 'Costs',
+            type: 'Web App',
+            featured: false,
+            description: 'Sistema web de gerenciamento de custos de projetos com rastreamento de orçamento em tempo real e alocação de serviços.',
+            stack: ['React', 'CSS', 'JavaScript'],
+            features: [
+                'Cadastro de projetos e serviços',
+                'Controle de orçamento em tempo real',
+                'Interface responsiva e intuitiva'
+            ],
+            link: 'https://costsprojects.netlify.app/',
+            linkLabel: 'Ver Projeto ↗'
+        },
+        weather: {
+            number: '03',
+            name: 'Weather City',
+            type: 'Web App',
+            featured: false,
+            description: 'Aplicativo de previsão do tempo com busca por cidade e dados em tempo real consumidos de API pública.',
+            stack: ['HTML', 'CSS', 'JavaScript', 'OpenWeather API'],
+            features: [
+                'Busca por qualquer cidade do mundo',
+                'Dados meteorológicos em tempo real',
+                'Interface limpa e responsiva'
+            ],
+            link: 'https://weathercitypage.netlify.app/',
+            linkLabel: 'Ver Projeto ↗'
+        },
+        users: {
+            number: '04',
+            name: 'Users List',
+            type: 'Repository',
+            featured: false,
+            description: 'Aplicação para busca e visualização de usuários consumindo API pública do GitHub.',
+            stack: ['HTML', 'CSS', 'JavaScript', 'GitHub API'],
+            features: [
+                'Busca de usuários por nome de usuário',
+                'Listagem de perfis com informações públicas',
+                'Consumo de API REST do GitHub'
+            ],
+            link: 'https://github.com/Devluisgsouza/users-list',
+            linkLabel: 'Ver no GitHub ↗'
         }
-        var ratio     = wrapper.clientWidth / wrapper.scrollWidth;
-        var thumbW    = Math.max(32, sbTrack.clientWidth * ratio);
-        var maxLeft   = sbTrack.clientWidth - thumbW;
-        var thumbLeft = (wrapper.scrollLeft / scrollable) * maxLeft;
-        sbThumb.style.width = thumbW + 'px';
-        sbThumb.style.left  = thumbLeft + 'px';
-    }
+    };
 
-    /* ── overflow check ── */
-    function checkOverflow() {
-        var overflows = maxScroll() > 2;
-        if (hint)    hint.classList.toggle('visible', overflows);
-        if (prevBtn) prevBtn.style.display = overflows ? '' : 'none';
-        if (nextBtn) nextBtn.style.display = overflows ? '' : 'none';
-        updateScrollbar();
-    }
-
-    /* ── smooth scroll (for arrows + scrollbar click) ── */
-    function smoothScrollTo(target) {
-        target = Math.max(0, Math.min(maxScroll(), target));
-        var start    = wrapper.scrollLeft;
-        var distance = target - start;
-        var duration = 400;
-        var t0       = null;
-
-        function step(now) {
-            if (!t0) t0 = now;
-            var t    = Math.min(1, (now - t0) / duration);
-            var ease = t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t;
-            wrapper.scrollLeft = start + distance * ease;
-            updateScrollbar();
-            if (t < 1) requestAnimationFrame(step);
-        }
-        requestAnimationFrame(step);
-    }
-
-    /* ── pause / resume ── */
-    function pauseAuto() {
-        paused = true;
-        returning = false;
-        clearTimeout(resumeTimer);
-    }
-
-    function scheduleResume() {
-        clearTimeout(resumeTimer);
-        resumeTimer = setTimeout(function () { paused = false; }, RESUME_DELAY);
-    }
-
-    /* ── auto-scroll loop ──────────────────────────────────────────
-       Forward: advances AUTO_SPEED px per frame.
-       When it hits the end, switches to "returning" mode.
-       Returning: retreats RETURN_SPEED px per frame (same loop,
-       different direction) until it reaches minScroll() again.
-    ─────────────────────────────────────────────────────────────── */
-    function autoScrollLoop() {
-        if (!paused) {
-            var mn = minScroll();
-            var mx = maxScroll();
-
-            if (mx > mn + 2) {          // only scroll if there's overflow
-                if (!returning) {
-                    /* ── going forward ── */
-                    if (wrapper.scrollLeft >= mx - 1) {
-                        returning = true;   // reached end, start return
-                    } else {
-                        wrapper.scrollLeft += AUTO_SPEED;
-                        updateScrollbar();
-                    }
-                } else {
-                    /* ── returning to start ── */
-                    if (wrapper.scrollLeft <= mn + 1) {
-                        returning = false;  // back at start, go forward again
-                        wrapper.scrollLeft = mn;
-                        updateScrollbar();
-                    } else {
-                        wrapper.scrollLeft -= RETURN_SPEED;
-                        updateScrollbar();
-                    }
-                }
+    /* ── Typewriter ─────────────────────────────── */
+    function typeWriter(el, text, speed) {
+        if (!el) return;
+        el.textContent = '';
+        var i = 0;
+        function step() {
+            if (i < text.length) {
+                el.textContent += text[i];
+                i++;
+                setTimeout(step, speed || 65);
             }
         }
-
-        requestAnimationFrame(autoScrollLoop);
+        setTimeout(step, 600);
     }
 
-    /* ── arrow buttons ── */
-    if (prevBtn) {
-        prevBtn.addEventListener('click', function () {
-            pauseAuto();
-            smoothScrollTo(Math.max(minScroll(), wrapper.scrollLeft - cardStep()));
-            scheduleResume();
+    typeWriter(document.getElementById('hero-role'), 'Desenvolvedor de Software', 65);
+
+    /* ── Modal elements ─────────────────────────── */
+    var overlay   = document.getElementById('modal-overlay');
+    var container = document.getElementById('modal-container');
+    var bodyEl    = document.getElementById('modal-body');
+    var closeBtn  = document.getElementById('modal-close');
+
+    if (!overlay || !container || !bodyEl || !closeBtn) return;
+
+    var lastFocused = null;
+
+    /* ── Build modal HTML ── */
+    function buildModal(id) {
+        var p = projects[id];
+        if (!p) return '';
+
+        var stackHTML = p.stack.map(function (s) {
+            return '<span>' + s + '</span>';
+        }).join('');
+
+        var featuresHTML = p.features.map(function (f) {
+            return '<li>' + f + '</li>';
+        }).join('');
+
+        var featuredBadge = p.featured
+            ? '<span class="modal-featured-badge">✦ Featured Project</span>'
+            : '';
+
+        return (
+            '<div class="modal-project-header">' +
+                '<div class="modal-meta dm-mono">' +
+                    '<span class="modal-num">' + p.number + '</span>' +
+                    '<span class="modal-type-tag">' + p.type + '</span>' +
+                    featuredBadge +
+                '</div>' +
+                '<h2 class="modal-title" id="modal-title">' + p.name + '</h2>' +
+            '</div>' +
+            '<p class="modal-desc">' + p.description + '</p>' +
+            '<div class="modal-section">' +
+                '<span class="modal-section-label dm-mono">// stack</span>' +
+                '<div class="modal-stack">' + stackHTML + '</div>' +
+            '</div>' +
+            '<div class="modal-section">' +
+                '<span class="modal-section-label dm-mono">// funcionalidades</span>' +
+                '<ul class="modal-features">' + featuresHTML + '</ul>' +
+            '</div>' +
+            '<div class="modal-footer">' +
+                '<a href="' + p.link + '" target="_blank" rel="noopener noreferrer" class="modal-cta">' +
+                    p.linkLabel +
+                '</a>' +
+            '</div>'
+        );
+    }
+
+    function openModal(id) {
+        var p = projects[id];
+        if (!p) return;
+
+        lastFocused = document.activeElement;
+        bodyEl.innerHTML = buildModal(id);
+        container.scrollTop = 0;
+
+        overlay.setAttribute('aria-hidden', 'false');
+        overlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+
+        // Focus close button after transition
+        setTimeout(function () { closeBtn.focus(); }, 100);
+    }
+
+    function closeModal() {
+        overlay.classList.remove('open');
+        overlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+
+        // Restore focus
+        if (lastFocused) {
+            setTimeout(function () {
+                if (lastFocused) lastFocused.focus();
+            }, 300);
+        }
+    }
+
+    /* ── Close triggers ── */
+    closeBtn.addEventListener('click', closeModal);
+
+    overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) closeModal();
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && overlay.classList.contains('open')) {
+            closeModal();
+        }
+    });
+
+    /* ── Focus trap inside modal ── */
+    container.addEventListener('keydown', function (e) {
+        if (e.key !== 'Tab') return;
+        var focusable = container.querySelectorAll(
+            'button, a[href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        var first = focusable[0];
+        var last  = focusable[focusable.length - 1];
+        if (e.shiftKey) {
+            if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+        } else {
+            if (document.activeElement === last)  { e.preventDefault(); first.focus(); }
+        }
+    });
+
+    /* ── Card click / keyboard ── */
+    document.querySelectorAll('[data-project]').forEach(function (card) {
+        card.addEventListener('click', function () {
+            openModal(card.dataset.project);
         });
-    }
-    if (nextBtn) {
-        nextBtn.addEventListener('click', function () {
-            pauseAuto();
-            smoothScrollTo(wrapper.scrollLeft + cardStep());
-            scheduleResume();
+        card.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openModal(card.dataset.project);
+            }
         });
-    }
-
-    /* ── pause on hover ── */
-    wrapper.addEventListener('mouseenter', pauseAuto);
-    wrapper.addEventListener('mouseleave', scheduleResume);
-
-    /* ── mouse drag ── */
-    var dragging  = false;
-    var dragX     = 0;
-    var dragStart = 0;
-
-    wrapper.addEventListener('mousedown', function (e) {
-        dragging  = true;
-        dragX     = e.clientX;
-        dragStart = wrapper.scrollLeft;
-        pauseAuto();
-        e.preventDefault();
-    });
-    window.addEventListener('mousemove', function (e) {
-        if (!dragging) return;
-        wrapper.scrollLeft = dragStart - (e.clientX - dragX);
-        updateScrollbar();
-    });
-    window.addEventListener('mouseup', function () {
-        if (!dragging) return;
-        dragging = false;
-        scheduleResume();
-    });
-
-    /* ── touch: native scroll, just pause/resume auto ── */
-    wrapper.addEventListener('touchstart', pauseAuto,       { passive: true });
-    wrapper.addEventListener('touchend',   scheduleResume,  { passive: true });
-
-    /* ── scrollbar thumb drag ── */
-    var sbDragging  = false;
-    var sbStartX    = 0;
-    var sbStartLeft = 0;
-
-    if (sbThumb) {
-        sbThumb.addEventListener('mousedown', function (e) {
-            sbDragging  = true;
-            sbStartX    = e.clientX;
-            sbStartLeft = wrapper.scrollLeft;
-            pauseAuto();
-            e.preventDefault();
-        });
-    }
-    if (sbTrack) {
-        sbTrack.addEventListener('click', function (e) {
-            if (e.target === sbThumb) return;
-            var rect = sbTrack.getBoundingClientRect();
-            smoothScrollTo((e.clientX - rect.left) / rect.width * maxScroll());
-            scheduleResume();
-        });
-    }
-    window.addEventListener('mousemove', function (e) {
-        if (!sbDragging) return;
-        var thumbW = sbThumb ? sbThumb.offsetWidth : 0;
-        var trackW = sbTrack ? sbTrack.clientWidth  : 1;
-        var ratio  = maxScroll() / Math.max(1, trackW - thumbW);
-        wrapper.scrollLeft = Math.max(0, Math.min(maxScroll(),
-            sbStartLeft + (e.clientX - sbStartX) * ratio));
-        updateScrollbar();
-    });
-    window.addEventListener('mouseup', function () {
-        if (sbDragging) { sbDragging = false; scheduleResume(); }
-    });
-
-    /* ── sync scrollbar on native scroll ── */
-    wrapper.addEventListener('scroll', updateScrollbar, { passive: true });
-
-    /* ── resize ── */
-    var resizeTimer;
-    window.addEventListener('resize', function () {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(checkOverflow, 100);
-    });
-
-    /* ── init ── */
-    requestAnimationFrame(function () {
-        wrapper.scrollLeft = minScroll();
-        checkOverflow();
-        autoScrollLoop();
     });
 
 })();
