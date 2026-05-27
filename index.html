@@ -81,14 +81,21 @@
                     </div>
 
                     <div class="hero-image" data-reveal data-delay="1">
-                        <div class="image-frame">
-                            <a href="#site-profile">
-                                <img src="images/avatar_perfil.png" alt="Luis Guilherme de Souza — Desenvolvedor de Software">
-                            </a>
-                            <div class="image-tag" aria-hidden="true">
-                                <span class="dm-mono">Localização</span>
-                                <strong>Brasil, SP</strong>
+                        <div class="hero-tech-card" id="hero-tech-card" aria-hidden="true">
+                            <div class="tech-window" id="tech-window">
+                                <div class="tech-window-bar">
+                                    <span class="tw-dot" style="background:#ff5f57"></span>
+                                    <span class="tw-dot" style="background:#febc2e"></span>
+                                    <span class="tw-dot" style="background:#28c840"></span>
+                                    <span class="tw-window-title">developer.ts</span>
+                                </div>
+                                <div class="tech-window-body" id="code-lines"></div>
                             </div>
+                            <span class="tech-tag tc-1">TypeScript</span>
+                            <span class="tech-tag tc-2">React Native</span>
+                            <span class="tech-tag tc-3">Next.js</span>
+                            <span class="tech-tag tc-4">Node.js</span>
+                            <span class="tech-tag tc-5">PostgreSQL</span>
                         </div>
                     </div>
                 </div>
@@ -143,7 +150,7 @@
                             </ul>
                         </div>
                         <div class="aside-card">
-                            <span class="aside-label dm-mono">Frameworks</span>
+                            <span class="aside-label dm-mono">Frameworks / Libs</span>
                             <ul class="aside-list">
                                 <li>React</li>
                                 <li>React Native</li>
@@ -224,61 +231,15 @@
                                 <p class="card-desc">SaaS de gestão inteligente para clínicas e consultórios brasileiros. Automatiza agenda, prontuários por voz, atendimento via WhatsApp com IA e controle financeiro.</p>
                                 <div class="card-stack">
                                     <span>Next.js</span><span>TypeScript</span><span>Tailwind CSS</span>
-                                    <span>Prisma</span><span>PostgreSQL</span><span>Anthropic AI</span>
+                                    <span>Drizzle</span><span>PostgreSQL</span><span>Anthropic AI</span>
+                                    <span>Neon</span><span>Resend</span><span>Clerk</span>
                                 </div>
                                 <div class="card-link featured-link">
                                     Ver detalhes <span aria-hidden="true">→</span>
                                 </div>
                             </div>
                             <div class="featured-visual" aria-hidden="true">
-                                <svg viewBox="0 0 320 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect width="320" height="200" rx="12" fill="#080c14"/>
-                                    <rect width="320" height="28" fill="#0d1422"/>
-                                    <rect y="16" width="320" height="12" fill="#0d1422"/>
-                                    <circle cx="14" cy="14" r="4" fill="#ff5f57" opacity="0.7"/>
-                                    <circle cx="28" cy="14" r="4" fill="#ffbd2e" opacity="0.7"/>
-                                    <circle cx="42" cy="14" r="4" fill="#28c840" opacity="0.7"/>
-                                    <text x="82" y="18" font-family="monospace" font-size="7.5" fill="#3d5575">vitto.app — Dashboard</text>
-                                    <rect x="8" y="34" width="70" height="42" rx="6" fill="#0d1422"/>
-                                    <rect x="86" y="34" width="70" height="42" rx="6" fill="#0d1422"/>
-                                    <rect x="164" y="34" width="70" height="42" rx="6" fill="#0d1422"/>
-                                    <rect x="242" y="34" width="70" height="42" rx="6" fill="#0d1422"/>
-                                    <text x="15" y="49" font-family="monospace" font-size="5.5" fill="#3d5575">AGENDA</text>
-                                    <text x="93" y="49" font-family="monospace" font-size="5.5" fill="#3d5575">PACIENTES</text>
-                                    <text x="171" y="49" font-family="monospace" font-size="5.5" fill="#3d5575">RECEITA</text>
-                                    <text x="249" y="49" font-family="monospace" font-size="5.5" fill="#3d5575">IA MSGS</text>
-                                    <text x="15" y="67" font-family="monospace" font-size="11" font-weight="bold" fill="#00e5cc">24</text>
-                                    <text x="93" y="67" font-family="monospace" font-size="11" font-weight="bold" fill="#00e5cc">142</text>
-                                    <text x="171" y="67" font-family="monospace" font-size="10" font-weight="bold" fill="#00e5cc">R$8.4k</text>
-                                    <text x="249" y="67" font-family="monospace" font-size="11" font-weight="bold" fill="#00e5cc">98</text>
-                                    <rect x="8" y="84" width="194" height="108" rx="6" fill="#0d1422"/>
-                                    <text x="16" y="97" font-family="monospace" font-size="5.5" fill="#3d5575">CONSULTAS / SEMANA</text>
-                                    <line x1="16" y1="108" x2="194" y2="108" stroke="#1a2d45" stroke-width="0.8"/>
-                                    <line x1="16" y1="120" x2="194" y2="120" stroke="#1a2d45" stroke-width="0.8"/>
-                                    <line x1="16" y1="132" x2="194" y2="132" stroke="#1a2d45" stroke-width="0.8"/>
-                                    <line x1="16" y1="144" x2="194" y2="144" stroke="#1a2d45" stroke-width="0.8"/>
-                                    <line x1="16" y1="156" x2="194" y2="156" stroke="#1a2d45" stroke-width="0.8"/>
-                                    <polyline points="22,152 52,138 82,146 112,122 142,132 166,108 192,116" stroke="#00e5cc" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <polygon points="22,152 52,138 82,146 112,122 142,132 166,108 192,116 192,170 22,170" fill="#00e5cc" opacity="0.07"/>
-                                    <circle cx="166" cy="108" r="4" fill="#00e5cc"/>
-                                    <circle cx="192" cy="116" r="4" fill="#00e5cc"/>
-                                    <circle cx="166" cy="108" r="14" fill="#00e5cc" opacity="0.07"/>
-                                    <rect x="210" y="84" width="102" height="50" rx="6" fill="#0d1422"/>
-                                    <text x="218" y="97" font-family="monospace" font-size="5.5" fill="#3d5575">PRÓXIMAS</text>
-                                    <rect x="218" y="102" width="86" height="0.8" fill="#1a2d45"/>
-                                    <circle cx="222" cy="112" r="3" fill="#00e5cc" opacity="0.8"/>
-                                    <rect x="230" y="109" width="60" height="3.5" rx="1.75" fill="#1a2d45"/>
-                                    <rect x="230" y="116" width="44" height="2.5" rx="1.25" fill="#152030"/>
-                                    <circle cx="222" cy="126" r="3" fill="#00e5cc" opacity="0.4"/>
-                                    <rect x="230" y="123" width="52" height="3.5" rx="1.75" fill="#1a2d45"/>
-                                    <rect x="230" y="130" width="36" height="2.5" rx="1.25" fill="#152030"/>
-                                    <rect x="210" y="142" width="102" height="50" rx="6" fill="#0d1422"/>
-                                    <text x="218" y="155" font-family="monospace" font-size="5.5" fill="#3d5575">WHATSAPP IA</text>
-                                    <rect x="218" y="160" width="86" height="0.8" fill="#1a2d45"/>
-                                    <rect x="218" y="165" width="58" height="9" rx="4.5" fill="#1a2d45"/>
-                                    <rect x="250" y="178" width="42" height="9" rx="4.5" fill="#00e5cc" opacity="0.2"/>
-                                    <circle cx="304" cy="185" r="3" fill="#28c840" opacity="0.8"/>
-                                </svg>
+                                <img src="images/menuDark.png" alt="">
                             </div>
                         </div>
                     </article>
@@ -293,7 +254,8 @@
                                 <span class="card-tag">Web App</span>
                             </div>
                             <h3 class="card-title">Costs</h3>
-                            <p class="card-desc">Project cost management system with real-time budget tracking and service allocation.</p>
+                            <p class="card-desc">Aplicação fullstack para gerenciamento de gastos em projetos. 
+                                Com ela, você pode criar projetos, adicionar serviços e acompanhar o orçamento em tempo real — tudo em uma interface simples e intuitiva.</p>
                             <div class="card-stack">
                                 <span>React</span><span>CSS</span><span>JavaScript</span>
                             </div>
@@ -311,7 +273,7 @@
                                 <span class="card-tag">Web App</span>
                             </div>
                             <h3 class="card-title">Weather City</h3>
-                            <p class="card-desc">Weather forecast app with city search and real-time data from a public API.</p>
+                            <p class="card-desc">Site que mostra o clima em tempo real de qualquer cidade/estado/país, consumindo uma API pública.</p>
                             <div class="card-stack">
                                 <span>HTML</span><span>CSS</span><span>JavaScript</span><span>OpenWeather API</span>
                             </div>
@@ -329,7 +291,7 @@
                                 <span class="card-tag">Repository</span>
                             </div>
                             <h3 class="card-title">Users List</h3>
-                            <p class="card-desc">Application for searching and viewing users by consuming the public GitHub API.</p>
+                            <p class="card-desc">Aplicação web para buscar e visualizar usuários consumindo a API pública JSONPlaceholder.</p>
                             <div class="card-stack">
                                 <span>HTML</span><span>CSS</span><span>JavaScript</span><span>GitHub API</span>
                             </div>

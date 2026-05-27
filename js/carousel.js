@@ -13,7 +13,7 @@
             type: 'SaaS / Web App',
             featured: true,
             description: 'SaaS de gestão inteligente para clínicas e consultórios brasileiros. Automatiza agenda, prontuários por voz, atendimento via WhatsApp com IA e controle financeiro — tudo em uma plataforma.',
-            stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Prisma', 'PostgreSQL', 'Anthropic AI', 'WhatsApp API'],
+            stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Drizzle', 'PostgreSQL', 'Anthropic AI', 'WhatsApp API', 'Neon', 'Resend', 'Clerk'],
             features: [
                 'Agenda inteligente com confirmação automática via WhatsApp',
                 'Prontuário eletrônico gerado por voz com IA',
@@ -198,6 +198,75 @@
             if (document.activeElement === last)  { e.preventDefault(); first.focus(); }
         }
     });
+
+    /* ── Tech Card: code animation + parallax ── */
+    (function () {
+        var codeLines = [
+            '<span class="code-cm">// developer.ts</span>',
+            '',
+            '<span class="code-kw">const</span> <span class="code-acc">dev</span> <span class="code-op">=</span> <span class="code-op">{</span>',
+            '  <span class="code-acc">name</span><span class="code-op">:</span>   <span class="code-str">"Luis Guilherme"</span><span class="code-op">,</span>',
+            '  <span class="code-acc">role</span><span class="code-op">:</span>   <span class="code-str">"Software Developer"</span><span class="code-op">,</span>',
+            '  <span class="code-acc">stack</span><span class="code-op">:</span>  <span class="code-op">[</span>',
+            '    <span class="code-str">"Next.js"</span><span class="code-op">,</span> <span class="code-str">"React"</span><span class="code-op">,</span>',
+            '    <span class="code-str">"TypeScript"</span><span class="code-op">,</span> <span class="code-str">"Node.js"</span><span class="code-op">,</span>',
+            '    <span class="code-str">"JavaScript"</span><span class="code-op">,</span> <span class="code-str">"PostgreSQL"</span><span class="code-op">,</span>',
+            '    <span class="code-str">"etc..."</span><span class="code-op">,</span>',
+            '  <span class="code-op">],</span>',
+            '  <span class="code-acc">status</span><span class="code-op">:</span> <span class="code-str">"disponível ✓"</span><span class="code-op">,</span>',
+            '  <span class="code-acc">location</span><span class="code-op">:</span> <span class="code-str">"Brasil - SP"</span><span class="code-op">,</span>',
+            '<span class="code-op">}</span>',
+        ];
+        var lineDelays = [55, 25, 75, 88, 88, 72, 86, 86, 70, 88, 65];
+
+        var container = document.getElementById('code-lines');
+        if (container) {
+            var lineIdx = 0;
+            function appendLine() {
+                if (lineIdx >= codeLines.length) {
+                    var lastLine = container.lastElementChild;
+                    if (lastLine) {
+                        var cur = document.createElement('span');
+                        cur.className = 'code-cursor';
+                        lastLine.appendChild(cur);
+                    }
+                    return;
+                }
+                var div = document.createElement('div');
+                div.className = 'code-line';
+                div.innerHTML = codeLines[lineIdx] || ' ';
+                container.appendChild(div);
+                var delay = lineDelays[lineIdx] !== undefined ? lineDelays[lineIdx] : 80;
+                lineIdx++;
+                setTimeout(appendLine, delay);
+            }
+            setTimeout(appendLine, 1400);
+        }
+
+        /* 3-D parallax tilt on mouse move */
+        var card = document.getElementById('hero-tech-card');
+        var win  = document.getElementById('tech-window');
+        if (!card || !win) return;
+
+        var ticking = false;
+        card.addEventListener('mousemove', function (e) {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(function () {
+                var rect = card.getBoundingClientRect();
+                var dx = (e.clientX - rect.left  - rect.width  / 2) / (rect.width  / 2);
+                var dy = (e.clientY - rect.top   - rect.height / 2) / (rect.height / 2);
+                win.style.transition = 'transform 0.08s linear, box-shadow 0.35s ease';
+                win.style.transform  = 'perspective(900px) rotateX(' + (-dy * 6) + 'deg) rotateY(' + (dx * 9) + 'deg) scale(1.01)';
+                ticking = false;
+            });
+        });
+
+        card.addEventListener('mouseleave', function () {
+            win.style.transition = 'transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.35s ease';
+            win.style.transform  = 'perspective(900px) rotateX(0deg) rotateY(0deg) scale(1)';
+        });
+    }());
 
     /* ── Card click / keyboard ── */
     document.querySelectorAll('[data-project]').forEach(function (card) {
