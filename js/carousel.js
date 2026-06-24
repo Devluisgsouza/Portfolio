@@ -5,6 +5,34 @@
 (function () {
     'use strict';
 
+    /* ── Logo draw-in ───────────────────────────────
+       Start the stroke-draw only after fonts/first paint settle. On a cold
+       load the main thread is busy (web fonts, icon kit, hero animations), so
+       a draw started immediately elapses unpainted and appears frozen mid-way.
+       Gating it behind .logo-ready makes it play smoothly every time. */
+    (function () {
+        var root = document.documentElement;
+        var reduce = window.matchMedia &&
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce) return; // reduced-motion CSS shows the logo statically
+
+        var started = false;
+        function start() {
+            if (started) return;
+            started = true;
+            requestAnimationFrame(function () {
+                root.classList.add('logo-ready');
+            });
+        }
+
+        if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(start);
+        } else {
+            window.addEventListener('load', start);
+        }
+        setTimeout(start, 1800); // fallback if fonts.ready stalls
+    }());
+
     /* ── Project data ──────────────────────────── */
     var projects = {
         vitto: {
@@ -69,6 +97,24 @@
             ],
             link: 'https://github.com/Devluisgsouza/users-list',
             linkLabel: 'Ver no GitHub ↗'
+        },
+        furia: {
+            number: '05',
+            name: 'Chat FURIA',
+            type: 'Web App',
+            featured: false,
+            description: 'Assistente de chat não-oficial para fãs da FURIA (Counter-Strike). Responde sobre partidas, lineup, história, lojas e redes sociais por meio de um sistema de reconhecimento de intenções, integrando dados em tempo real com uma base de conhecimento local.',
+            stack: ['HTML', 'CSS', 'JavaScript', 'Netlify Functions', 'Node.js', 'Draft5 API'],
+            features: [
+                'Interface de chat moderna com indicador de digitação e timestamps',
+                'Dados em tempo real de partidas, resultados e lineup',
+                'Reconhecimento de intenções por correspondência de palavras-chave',
+                'Arquitetura com fallback entre API serverless e base local',
+                'Acessibilidade com ARIA e suporte a movimento reduzido',
+                'Proteção contra XSS na sanitização de mensagens'
+            ],
+            link: 'https://chat-furia.netlify.app/',
+            linkLabel: 'Ver Projeto ↗'
         }
     };
 
