@@ -22,7 +22,7 @@
                 'Dashboard em tempo real com métricas da clínica',
                 'Multi-profissional e LGPD compliant'
             ],
-            link: 'https://vitto-eta.vercel.app/',
+            link: 'https://vitto.ia.br',
             linkLabel: 'Ver Projeto ↗'
         },
         costs: {
@@ -214,7 +214,7 @@
             '    <span class="code-str">"etc..."</span><span class="code-op">,</span>',
             '  <span class="code-op">],</span>',
             '  <span class="code-acc">status</span><span class="code-op">:</span> <span class="code-str">"disponível ✓"</span><span class="code-op">,</span>',
-            '  <span class="code-acc">location</span><span class="code-op">:</span> <span class="code-str">"Brasil - SP"</span><span class="code-op">,</span>',
+            '  <span class="code-acc">from</span><span class="code-op">:</span> <span class="code-str">"Brasil - SP"</span><span class="code-op">,</span>',
             '<span class="code-op">}</span>',
         ];
         var lineDelays = [55, 25, 75, 88, 88, 72, 86, 86, 70, 88, 65];
