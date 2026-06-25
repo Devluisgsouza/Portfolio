@@ -58,12 +58,15 @@
             name: 'Costs',
             type: 'Web App',
             featured: false,
-            description: 'Sistema web de gerenciamento de custos de projetos com rastreamento de orçamento em tempo real e alocação de serviços.',
-            stack: ['React', 'CSS', 'JavaScript'],
+            description: 'Aplicação React para gerenciar os custos de projetos com eficiência e clareza. Permite criar projetos com orçamento definido, adicionar serviços com seus custos e acompanhar os gastos em tempo real, com autenticação de usuário e persistência local dos dados.',
+            stack: ['React', 'React Router', 'CSS Modules', 'React Icons', 'JavaScript'],
             features: [
-                'Cadastro de projetos e serviços',
-                'Controle de orçamento em tempo real',
-                'Interface responsiva e intuitiva'
+                'Autenticação de usuário e gestão de sessão',
+                'Criação de projetos com orçamento definido',
+                'Cadastro de serviços com custos associados',
+                'Controle de orçamento com indicador de progresso em tempo real',
+                'Persistência de dados no navegador via localStorage',
+                'Interface responsiva com CSS Modules'
             ],
             link: 'https://costsprojects.netlify.app/',
             linkLabel: 'Ver Projeto ↗'
